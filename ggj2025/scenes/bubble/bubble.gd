@@ -17,10 +17,13 @@ enum MODE {TAP, PUSH}
 
 @onready var cooldown: Timer = $Timer as Timer
 
+var shader: ShaderMaterial
+
 var direction: Vector3 = Vector3()
 
 
 func _ready() -> void:
+	shader = $MeshInstance3D.material_override
 	if mode == MODE.TAP:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -43,6 +46,9 @@ func _physics_process(delta: float) -> void:
 			tap_input(delta)
 		MODE.PUSH:
 			mouse_input(delta)
+	var vl: float = linear_velocity.length()
+	shader.set_shader_parameter("fuwafuwa_speed", remap(clampf(vl, 0, 10), 0, 10, 1.5, 3.0))
+	shader.set_shader_parameter("fuwafuwa_size", remap(clampf(vl, 0, 10), 0, 10, 0.05, 0.1))
 
 
 func tap_input(delta: float) -> void:
