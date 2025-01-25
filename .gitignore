@@ -1,0 +1,14 @@
+# Godot 4+ specific ignores
+/ggj2025/.godot/
+
+# Godot-specific ignores
+/ggj2025/.import/
+/ggj2025/export.cfg
+/ggj2025/export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# project specific
+# default gitignore ignores addons, we may push some addons, but I'll leave this as good practice anyways and with the goal of not pushing addons
+/ggj2025/addons/
