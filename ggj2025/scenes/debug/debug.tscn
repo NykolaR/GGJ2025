@@ -1,6 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhu22u8bxpndt"]
+[gd_scene load_steps=10 format=3 uid="uid://dhu22u8bxpndt"]
 
 [ext_resource type="PackedScene" uid="uid://dqnkqd4qp7f7m" path="res://scenes/bubble/bubble.tscn" id="1_kfclf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_kfclf"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_fym4n"]
+sky_material = SubResource("ProceduralSkyMaterial_kfclf")
+
+[sub_resource type="Environment" id="Environment_pa0g8"]
+background_mode = 2
+sky = SubResource("Sky_fym4n")
+tonemap_mode = 4
+tonemap_exposure = 4.0
+glow_enabled = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_klwu5"]
 
@@ -18,6 +32,9 @@ noise = SubResource("FastNoiseLite_kfclf")
 albedo_texture = SubResource("NoiseTexture2D_fym4n")
 
 [node name="Debug" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pa0g8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
