@@ -38,7 +38,12 @@ transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_nyk43")
 mesh = SubResource("SphereMesh_v753p")
 
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
+remote_path = NodePath("../Camera")
+update_rotation = false
+
 [node name="Camera" type="Node3D" parent="."]
+top_level = true
 
 [node name="CameraY" type="Node3D" parent="Camera"]
 

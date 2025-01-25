@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		MODE.PUSH:
 			mouse_input(delta)
 	var vl: float = linear_velocity.length()
-	shader.set_shader_parameter("fuwafuwa_speed", remap(clampf(vl, 0, 10), 0, 10, 1.5, 3.0))
+	shader.set_shader_parameter("fuwafuwa_speed", remap(clampf(vl, 0, 10), 0, 10, 1.5, 2.5))
 	shader.set_shader_parameter("fuwafuwa_size", remap(clampf(vl, 0, 10), 0, 10, 0.05, 0.1))
 
 
