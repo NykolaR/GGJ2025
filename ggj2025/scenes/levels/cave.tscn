@@ -1,0 +1,197 @@
+[gd_scene load_steps=28 format=3 uid="uid://btxi0ibsi5l4q"]
+
+[ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
+[ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
+
+[sub_resource type="Gradient" id="Gradient_70gw8"]
+colors = PackedColorArray(0, 0, 0, 1, 0.419813, 0.419813, 0.419813, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sqngc"]
+frequency = 0.03
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fym4n"]
+color_ramp = SubResource("Gradient_70gw8")
+noise = SubResource("FastNoiseLite_sqngc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qmj5m"]
+cull_mode = 2
+albedo_texture = SubResource("NoiseTexture2D_fym4n")
+uv1_scale = Vector3(0.06, 0.06, 0.06)
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sqngc"]
+size = Vector2(18, 40)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="Gradient" id="Gradient_sqngc"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qmj5m"]
+gradient = SubResource("Gradient_sqngc")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3xx83"]
+gradient = SubResource("Gradient_sqngc")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v2pta"]
+gradient = SubResource("Gradient_sqngc")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_qmj5m"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_pwkrs"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_qmj5m")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_70gw8"]
+seed = 255
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sqngc"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_70gw8")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ge1oy"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_qmj5m")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_3xx83"]
+seed = 230
+frequency = 0.0463
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v2pta"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_3xx83")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_yftsl"]
+seed = 135
+frequency = 0.013
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dve5i"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_yftsl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mu2na"]
+render_priority = 0
+shader = ExtResource("2_70gw8")
+shader_parameter/sync_time = null
+shader_parameter/wave_speed = 0.05
+shader_parameter/caustic_speed = 0.01
+shader_parameter/edge_fade_power = 1.0
+shader_parameter/transmittence = 0.05
+shader_parameter/h_dist_trans_weight = 3.0
+shader_parameter/transmit_color = null
+shader_parameter/depth_fade = 0.3
+shader_parameter/depth_fade_distance = 5.0
+shader_parameter/surface_albedo = Color(0.355288, 0.782158, 0.921982, 1)
+shader_parameter/surface_bottom = Color(0.3036, 0.52338, 0.66, 1)
+shader_parameter/opacity = 0.4
+shader_parameter/opacity_floor = 0.1
+shader_parameter/opacity_ceiling = 0.8
+shader_parameter/roughness = 0.4
+shader_parameter/height_scale = 1.0
+shader_parameter/amplitude1 = 0.0
+shader_parameter/amplitude2 = 0.2
+shader_parameter/vertex_noise_big = SubResource("NoiseTexture2D_v2pta")
+shader_parameter/vertex_noise_big2 = SubResource("NoiseTexture2D_dve5i")
+shader_parameter/v_noise_tile = 200
+shader_parameter/normal_noise = SubResource("NoiseTexture2D_pwkrs")
+shader_parameter/normal_noise2 = SubResource("NoiseTexture2D_sqngc")
+shader_parameter/normal_noise_size = 5.12
+shader_parameter/normal_noise_speed = 0.005
+shader_parameter/v_normal_scale = 1.0
+shader_parameter/normal_map_w = 256
+shader_parameter/wobble_power = 0.01
+shader_parameter/under_wobble_noise = SubResource("NoiseTexture2D_ge1oy")
+shader_parameter/sky_color = null
+shader_parameter/foam_color = null
+shader_parameter/foam = SubResource("GradientTexture1D_qmj5m")
+shader_parameter/foam_mask = SubResource("GradientTexture1D_3xx83")
+shader_parameter/foam_mask_size = null
+shader_parameter/foam_mask_offset = Vector2(0, 0)
+shader_parameter/foam_wobble = 0.01
+shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_v2pta")
+shader_parameter/foam_wobble_size = 10.0
+shader_parameter/high_color = Color(0.657, 0.87165, 0.9, 1)
+shader_parameter/low_color = Color(0.3397, 0.51982, 0.79, 1)
+shader_parameter/wave_color_range = 2.0
+shader_parameter/enable_fake_lighting = false
+shader_parameter/shine_strength = 0.17
+shader_parameter/shine_shininess = 18.0
+shader_parameter/shadow = 0.72
+shader_parameter/shadow_width = 0.18
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.199
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.067
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_70gw8"]
+size = Vector3(13.95, 1, 45.11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmj5m"]
+size = Vector3(13.95, 4.26611, 50.0061)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqngc"]
+size = Vector3(5.235, 0.663086, 13.3301)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yftsl"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_fym4n"]
+sky_material = SubResource("ProceduralSkyMaterial_yftsl")
+
+[sub_resource type="Environment" id="Environment_pwkrs"]
+background_mode = 2
+sky = SubResource("Sky_fym4n")
+tonemap_mode = 4
+tonemap_exposure = 2.0
+glow_enabled = true
+fog_enabled = true
+fog_density = 0.005
+
+[node name="Cave" type="Node3D"]
+
+[node name="crystal_cave" parent="." instance=ExtResource("1_1lcju")]
+
+[node name="Base" parent="crystal_cave" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qmj5m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.02062, 3.07978)
+mesh = SubResource("PlaneMesh_sqngc")
+surface_material_override/0 = SubResource("ShaderMaterial_mu2na")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+gravity_space_override = 3
+gravity_point_center = Vector3(0, 1, 0)
+gravity_direction = Vector3(0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.863072, 11.4914)
+shape = SubResource("BoxShape3D_70gw8")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.49613, 13.6029)
+shape = SubResource("BoxShape3D_qmj5m")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="MeshInstance3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.694615, -13.5686)
+shape = SubResource("BoxShape3D_sqngc")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.50368, 3.71445)
+light_energy = 4.0
+shadow_enabled = true
+shadow_opacity = 0.5
+omni_range = 30.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pwkrs")
+
+[editable path="crystal_cave"]
