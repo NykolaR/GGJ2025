@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqnkqd4qp7f7m"]
+
+[ext_resource type="Script" uid="uid://bl7ywij8kmhyv" path="res://scenes/bubble/bubble.gd" id="1_v753p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ya7gu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_v753p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wsujy"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.156863)
+
+[node name="Bubble" type="CharacterBody3D"]
+motion_mode = 1
+script = ExtResource("1_v753p")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ya7gu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_v753p")
+surface_material_override/0 = SubResource("StandardMaterial3D_wsujy")
+
+[node name="Camera" type="Node3D" parent="."]
+
+[node name="CameraX" type="Node3D" parent="Camera"]
+
+[node name="CameraY" type="Node3D" parent="Camera/CameraX"]
+
+[node name="Camera3D" type="Camera3D" parent="Camera/CameraX/CameraY"]
