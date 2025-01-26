@@ -1,16 +1,23 @@
-[gd_scene load_steps=29 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=32 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
 [ext_resource type="AudioStream" uid="uid://b5xb0circeqev" path="res://assets/audio/cave_ambience.wav" id="3_sqngc"]
+[ext_resource type="PackedScene" uid="uid://dx0j0tqumcwy4" path="res://scenes/environment/obelisk.tscn" id="4_qmj5m"]
+[ext_resource type="PackedScene" uid="uid://cw8d4v0ksxr1u" path="res://scenes/environment/eggplant.tscn" id="5_3xx83"]
+[ext_resource type="PackedScene" uid="uid://boc2firdbna1c" path="res://scenes/environment/hedgehog.tscn" id="6_v2pta"]
 
 [sub_resource type="Gradient" id="Gradient_70gw8"]
-colors = PackedColorArray(0, 0, 0, 1, 0.419813, 0.419813, 0.419813, 1)
+offsets = PackedFloat32Array(0.297101, 1)
+colors = PackedColorArray(0.152941, 0.152941, 0.211765, 1, 0.262745, 0.262745, 0.309804, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sqngc"]
-frequency = 0.03
+frequency = 0.05
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fym4n"]
+width = 128
+height = 128
+seamless = true
 color_ramp = SubResource("Gradient_70gw8")
 noise = SubResource("FastNoiseLite_sqngc")
 
@@ -19,6 +26,7 @@ cull_mode = 2
 albedo_texture = SubResource("NoiseTexture2D_fym4n")
 uv1_scale = Vector3(0.06, 0.06, 0.06)
 uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sqngc"]
 size = Vector2(18, 40)
@@ -89,8 +97,8 @@ shader_parameter/h_dist_trans_weight = 3.0
 shader_parameter/transmit_color = null
 shader_parameter/depth_fade = 0.3
 shader_parameter/depth_fade_distance = 5.0
-shader_parameter/surface_albedo = Color(0.355288, 0.782158, 0.921982, 1)
-shader_parameter/surface_bottom = Color(0.3036, 0.52338, 0.66, 1)
+shader_parameter/surface_albedo = Color(0.4, 1, 0.890196, 1)
+shader_parameter/surface_bottom = Color(0.301961, 0.65098, 1, 1)
 shader_parameter/opacity = 0.4
 shader_parameter/opacity_floor = 0.1
 shader_parameter/opacity_ceiling = 0.8
@@ -118,8 +126,8 @@ shader_parameter/foam_mask_offset = Vector2(0, 0)
 shader_parameter/foam_wobble = 0.01
 shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_v2pta")
 shader_parameter/foam_wobble_size = 10.0
-shader_parameter/high_color = Color(0.657, 0.87165, 0.9, 1)
-shader_parameter/low_color = Color(0.3397, 0.51982, 0.79, 1)
+shader_parameter/high_color = Color(0.4, 1, 0.890196, 1)
+shader_parameter/low_color = Color(0.301961, 0.65098, 1, 1)
 shader_parameter/wave_color_range = 2.0
 shader_parameter/enable_fake_lighting = false
 shader_parameter/shine_strength = 0.17
@@ -154,6 +162,7 @@ tonemap_mode = 4
 tonemap_exposure = 2.0
 glow_enabled = true
 fog_enabled = true
+fog_light_color = Color(0.294118, 0.356863, 0.670588, 1)
 fog_density = 0.005
 
 [node name="Cave" type="Node3D"]
@@ -172,6 +181,8 @@ mesh = SubResource("PlaneMesh_sqngc")
 surface_material_override/0 = SubResource("ShaderMaterial_mu2na")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 4
+collision_mask = 128
 gravity_space_override = 3
 gravity_point_center = Vector3(0, 1, 0)
 gravity_direction = Vector3(0, 1, 0)
@@ -201,5 +212,140 @@ environment = SubResource("Environment_pwkrs")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_sqngc")
 autoplay = true
+
+[node name="Obbylisk" type="Node3D" parent="."]
+
+[node name="Obelisk" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(2.5, 0, 0, 0, 1.59245, -1.9272, 0, 1.9272, 1.59245, 0.277006, -3.1787, -19.474)
+
+[node name="Obelisk2" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(0.576338, -2.17372, -1.09214, 0.262591, 1.1714, -2.19291, 2.41845, 0.390828, 0.49837, 4.16494, -2.62214, -22.7768)
+
+[node name="Obelisk3" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(2.19119, 0.442859, -1.11917, -1.16232, 0.174927, -2.20645, -0.31255, 2.45424, 0.359216, 3.88183, -0.532102, -32.5543)
+
+[node name="Obelisk4" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(2.19119, -0.676663, 0.995386, -1.16232, -0.652738, 2.11494, -0.31255, -2.31647, -0.886709, 7.63313, -0.854364, -26.6524)
+
+[node name="Obelisk5" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(2.19119, 1.19686, 0.12725, -1.16232, 2.1728, -0.421842, -0.31255, 0.310573, 2.46087, 9.71397, -5.17863, -30.7679)
+
+[node name="Obelisk6" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(0.360208, 2.47064, 0.12725, -2.43518, 0.376766, -0.421842, -0.436065, -0.0631707, 2.46087, 13.4987, -6.90109, -22.8388)
+
+[node name="Obelisk7" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(1.0648, -2.25832, 0.12725, 2.23791, 1.03141, -0.421842, 0.328563, 0.293581, 2.46087, 23.432, -8.78808, -21.7144)
+
+[node name="Obelisk8" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(-2.4838, 0.254049, 0.12725, -0.27211, -2.44908, -0.421842, 0.0817913, -0.432959, 2.46087, 17.9766, -2.96423, -19.2244)
+
+[node name="Obelisk9" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(-2.4838, -0.207855, -0.193725, -0.27211, 2.23074, 1.09534, 0.0817913, 1.10933, -2.23891, 18.7446, -10.4063, -26.5272)
+
+[node name="Obelisk10" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(1.89231, 1.62879, 0.12725, -1.59116, 1.88155, -0.421842, -0.370608, 0.238312, 2.46087, -3.45672, -9.92006, -12.1032)
+
+[node name="Obelisk11" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(1.62634, 1.45116, 1.22439, -1.89821, 1.2788, 1.00571, -0.0425188, -1.58391, 1.93376, 6.13237, -8.97543, -9.77323)
+
+[node name="Obelisk12" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(2.37553, 0.768555, 0.12725, -0.738033, 2.35103, -0.421842, -0.249351, 0.363272, 2.46087, -18.9106, -10.8987, -13.8045)
+
+[node name="Obelisk13" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(0.75171, 2.00386, -1.29208, -2.38156, 0.69606, -0.306046, 0.114437, 1.32289, 2.11822, -2.26931, -10.266, -57.3695)
+
+[node name="Obelisk14" parent="Obbylisk" instance=ExtResource("4_qmj5m")]
+transform = Transform3D(0.168417, -1.17897, -2.19811, 2.4521, 0.481918, -0.0706016, 0.457017, -2.15123, 1.18884, 20.4859, -10.2367, -40.7548)
+
+[node name="Eggystle" type="Node3D" parent="."]
+
+[node name="Eggplant" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.995645, 0.0932221, 0, -0.0932221, 0.995645, 0, 0, 0, 1, -5.02165, -5.90387, 0)
+
+[node name="Eggplant2" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.995645, 0.0932221, 0, -0.0932221, 0.995645, 0, 0, 0, 1, 4.68132, -6.87785, 12.5778)
+
+[node name="Eggplant3" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.995645, 0.0932221, 0, -0.0932221, 0.995645, 0, 0, 0, 1, 1.68796, -5.41991, -5.29353)
+
+[node name="Eggplant4" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(-0.995645, -0.093222, 0, 0.093222, -0.995645, 0, 0, 0, 1, 2.52335, 6.64759, -5.29353)
+
+[node name="Eggplant5" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.459842, 0.404157, 0.790697, 0.08973, 0.864719, -0.494176, -0.883456, 0.298192, 0.361369, 13.9438, -10.1723, -29.0708)
+
+[node name="Eggplant6" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(-0.466504, -0.0184003, 0.884328, -0.0279325, -0.998979, -0.0355208, 0.884078, -0.0412721, 0.465513, 16.4305, -3.80138, -13.2719)
+
+[node name="Eggplant7" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(-0.466504, -0.177601, -0.866506, -0.0279325, 0.982104, -0.186256, 0.884078, -0.0626853, -0.463116, 11.0866, -11.6272, -12.2913)
+
+[node name="Eggplant8" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.45772, 0.199147, -0.866506, 0.0736689, -0.979736, -0.186256, -0.886039, 0.0214185, -0.463116, -14.5269, -5.60352, -10.9409)
+
+[node name="Eggplant9" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.457721, -0.828883, 0.321629, 0.0736689, 0.395862, 0.91535, -0.886039, -0.39528, 0.242257, -17.6329, -8.38693, -22.8615)
+
+[node name="Eggplant10" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.45772, 0.543097, -0.703945, 0.0736689, -0.812197, -0.578713, -0.886039, 0.21303, -0.411768, -20.3199, -5.29064, -26.1036)
+
+[node name="Eggplant11" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(0.850689, -0.413027, 0.325172, -0.211251, 0.297826, 0.930953, -0.481354, -0.860644, 0.166105, -14.6491, -6.9646, -27.0483)
+
+[node name="Eggplant12" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(2.12672, -0.0180972, 1.31405, -0.528129, 2.27725, 0.886112, -1.20338, -1.0314, 1.93341, 10.6748, -18.7832, -41.9846)
+
+[node name="Eggplant13" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(2.12672, -0.656629, -1.13837, -0.528129, -2.41004, 0.403487, -1.20338, -0.102759, -2.18891, 5.67899, 1.79351, -50.9497)
+
+[node name="Eggplant14" parent="Eggystle" instance=ExtResource("5_3xx83")]
+transform = Transform3D(2.18558, -0.164819, -1.20254, -0.0438121, -2.48594, 0.261094, -1.21299, -0.207182, -2.17617, 26.1688, -0.14997, -50.8441)
+
+[node name="Hedgehogstacle" type="Node3D" parent="."]
+
+[node name="Hedgehog" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(1, 0, 0, 0, -0.979473, -0.201574, 0, 0.201574, -0.979473, 1.50167, 3.05197, -26.5573)
+
+[node name="Hedgehog5" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(1, 0, 0, 0, -0.979473, -0.201574, 0, 0.201574, -0.979473, 11.5036, 0.795546, -30.5789)
+
+[node name="Hedgehog6" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.840359, 0.542031, 0, -0.00816382, 0.0126571, 0.999887, 0.541969, -0.840263, 0.0150615, 11.1448, -2.61041, -25.9171)
+
+[node name="Hedgehog7" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.545868, 0.000548661, -0.837871, -0.0122064, 0.999899, -0.00729763, 0.837782, 0.0142109, 0.54582, 18.7464, -13.0861, -17.7582)
+
+[node name="Hedgehog8" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.0809616, 0.539831, -0.837871, -0.990513, 0.137226, -0.00729764, 0.111038, 0.830513, 0.54582, 11.8843, -8.32883, -16.1881)
+
+[node name="Hedgehog9" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(-0.150897, 0.199377, -0.968235, 0.985333, -0.0486196, -0.163573, -0.0796879, -0.978716, -0.189116, 11.1193, -7.59304, -8.53095)
+
+[node name="Hedgehog10" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(-0.150897, -0.352917, -0.923407, 0.985333, -0.128994, -0.111716, -0.0796879, -0.92672, 0.367206, -4.70317, -7.52086, -9.44015)
+
+[node name="Hedgehog12" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(-0.0545317, -0.984987, -0.163788, 0.680494, -0.156701, 0.715803, -0.730722, -0.0724228, 0.678823, -17.939, -7.41182, -18.5415)
+
+[node name="Hedgehog13" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(-0.995234, 0.0498034, -0.0838478, -0.0555423, -0.996168, 0.0675632, -0.0801615, 0.0718984, 0.994186, -20.1472, -5.76118, -18.7591)
+
+[node name="Hedgehog14" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.0725662, 0.994901, -0.0700487, -0.987469, 0.0618003, -0.14521, -0.14014, 0.0797083, 0.986919, -22.3632, -7.83033, -19.0982)
+
+[node name="Hedgehog15" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(-0.132072, 0.0454846, 0.990197, -0.0574164, 0.996919, -0.0534514, -0.989576, -0.0639128, -0.129053, -20.1053, -9.93297, -18.5431)
+
+[node name="Hedgehog11" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(-0.857112, -0.175713, 0.484237, 0.483014, 0.052593, 0.874032, -0.179046, 0.983036, 0.0397938, -5.10372, -7.84996, -13.8718)
+
+[node name="Hedgehog2" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.877129, 7.45058e-09, 0.480254, 0.477378, 0.109283, -0.871876, -0.0524838, 0.994011, 0.0958557, 7.9023, -1.31237, -33.719)
+
+[node name="Hedgehog3" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.590845, 0.245102, 0.768653, 0.801953, -0.0743056, -0.592748, -0.0881682, 0.966646, -0.240463, 4.9668, -1.12171, -33.3969)
+
+[node name="Hedgehog4" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
+transform = Transform3D(0.849794, 0.227718, 0.475388, 0.369016, 0.386996, -0.845022, -0.3764, 0.89352, 0.244836, 6.17815, -3.61711, -32.7831)
 
 [editable path="crystal_cave"]
