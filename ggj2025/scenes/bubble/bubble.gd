@@ -31,7 +31,7 @@ var direction: Vector3 = Vector3()
 signal frog_popped
 signal calculate_score
 signal tap_inputted(direction: Vector3)
-
+signal restart
 
 func _ready() -> void:
 	shader = $MeshInstance3D.material_override
@@ -53,11 +53,11 @@ func _input(event: InputEvent) -> void:
 			camera_x.rotation_degrees.x = clampf(camera_x.rotation_degrees.x, -87, 87)
 		
 		if event.is_action_pressed("restart"):
-			get_tree().reload_current_scene()
+			restart.emit()
+			
 	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		if event.is_action_pressed("mouse_unlock"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 
 func _physics_process(delta: float) -> void:
 	if bubble_control:
@@ -102,6 +102,7 @@ func tap_input(_delta: float) -> void:
 		input.y = Input.get_axis("tap_down", "tap_up")
 		input.z = Input.get_axis("tap_forward", "tap_backward")
 		if not input.is_zero_approx():
+			tap_inputted.emit(input)
 			input = camera_x.to_global(input)
 			frog.look_at(input)
 			input -= global_position
@@ -110,7 +111,6 @@ func tap_input(_delta: float) -> void:
 			cooldown.start()
 			swim_audio.play()
 			
-			tap_inputted.emit(input)
 
 
 func mouse_input(_delta: float) -> void:

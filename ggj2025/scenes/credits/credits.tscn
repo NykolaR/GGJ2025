@@ -15,7 +15,7 @@ theme_override_fonts/normal_font = ExtResource("1_2amk3")
 theme_override_font_sizes/normal_font_size = 30
 text = "Font: Happy Monkey
 Shaders: Taillight Games, Arlez80
-Paletters: PineappleOnPizza"
+Palette: PineappleOnPizza"
 horizontal_alignment = 1
 vertical_alignment = 1
 
