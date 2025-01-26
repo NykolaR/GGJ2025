@@ -1,16 +1,21 @@
-[gd_scene load_steps=29 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=30 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
 [ext_resource type="AudioStream" uid="uid://b5xb0circeqev" path="res://assets/audio/cave_ambience.wav" id="3_sqngc"]
+[ext_resource type="PackedScene" uid="uid://dx0j0tqumcwy4" path="res://scenes/environment/obelisk.tscn" id="4_qmj5m"]
 
 [sub_resource type="Gradient" id="Gradient_70gw8"]
-colors = PackedColorArray(0, 0, 0, 1, 0.419813, 0.419813, 0.419813, 1)
+offsets = PackedFloat32Array(0.297101, 1)
+colors = PackedColorArray(0.152941, 0.152941, 0.211765, 1, 0.262745, 0.262745, 0.309804, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sqngc"]
-frequency = 0.03
+frequency = 0.05
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_fym4n"]
+width = 128
+height = 128
+seamless = true
 color_ramp = SubResource("Gradient_70gw8")
 noise = SubResource("FastNoiseLite_sqngc")
 
@@ -19,6 +24,7 @@ cull_mode = 2
 albedo_texture = SubResource("NoiseTexture2D_fym4n")
 uv1_scale = Vector3(0.06, 0.06, 0.06)
 uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sqngc"]
 size = Vector2(18, 40)
@@ -89,8 +95,8 @@ shader_parameter/h_dist_trans_weight = 3.0
 shader_parameter/transmit_color = null
 shader_parameter/depth_fade = 0.3
 shader_parameter/depth_fade_distance = 5.0
-shader_parameter/surface_albedo = Color(0.355288, 0.782158, 0.921982, 1)
-shader_parameter/surface_bottom = Color(0.3036, 0.52338, 0.66, 1)
+shader_parameter/surface_albedo = Color(0.4, 1, 0.890196, 1)
+shader_parameter/surface_bottom = Color(0.301961, 0.65098, 1, 1)
 shader_parameter/opacity = 0.4
 shader_parameter/opacity_floor = 0.1
 shader_parameter/opacity_ceiling = 0.8
@@ -118,8 +124,8 @@ shader_parameter/foam_mask_offset = Vector2(0, 0)
 shader_parameter/foam_wobble = 0.01
 shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_v2pta")
 shader_parameter/foam_wobble_size = 10.0
-shader_parameter/high_color = Color(0.657, 0.87165, 0.9, 1)
-shader_parameter/low_color = Color(0.3397, 0.51982, 0.79, 1)
+shader_parameter/high_color = Color(0.4, 1, 0.890196, 1)
+shader_parameter/low_color = Color(0.301961, 0.65098, 1, 1)
 shader_parameter/wave_color_range = 2.0
 shader_parameter/enable_fake_lighting = false
 shader_parameter/shine_strength = 0.17
@@ -154,6 +160,7 @@ tonemap_mode = 4
 tonemap_exposure = 2.0
 glow_enabled = true
 fog_enabled = true
+fog_light_color = Color(0.294118, 0.356863, 0.670588, 1)
 fog_density = 0.005
 
 [node name="Cave" type="Node3D"]
@@ -172,6 +179,8 @@ mesh = SubResource("PlaneMesh_sqngc")
 surface_material_override/0 = SubResource("ShaderMaterial_mu2na")
 
 [node name="Area3D" type="Area3D" parent="MeshInstance3D"]
+collision_layer = 5
+collision_mask = 129
 gravity_space_override = 3
 gravity_point_center = Vector3(0, 1, 0)
 gravity_direction = Vector3(0, 1, 0)
@@ -201,5 +210,8 @@ environment = SubResource("Environment_pwkrs")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_sqngc")
 autoplay = true
+
+[node name="Obelisk" parent="." instance=ExtResource("4_qmj5m")]
+transform = Transform3D(2.5, 0, 0, 0, 1.59245, -1.9272, 0, 1.9272, 1.59245, 0.277006, -3.1787, -19.474)
 
 [editable path="crystal_cave"]
