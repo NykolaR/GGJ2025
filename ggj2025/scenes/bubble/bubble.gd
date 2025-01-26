@@ -28,8 +28,8 @@ var vstack: Array[Vector3] = []
 var frog_scored
 var direction: Vector3 = Vector3()
 
-signal frog_popped
-signal calculate_score
+signal frog_popped(node: Node3D)
+signal calculate_score(node: Node3D)
 signal tap_inputted(direction: Vector3)
 signal restart
 
@@ -87,10 +87,9 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	while i < state.get_contact_count():
 		var normal: Vector3 = state.get_contact_local_normal(i)
 		var lv: Vector3 = vstack.back()
-		#print(state.linear_velocity.normalized().dot(normal))
 		var dot: float = lv.normalized().dot(normal) * clampf(lv.length(), 0.1, 2.5)
 		if dot < -0.8:
-			pop()
+			#pop()
 			return
 		i += 1
 
@@ -132,7 +131,8 @@ func pop() -> void:
 	frog.angular_velocity = angular_velocity
 	freeze = true
 	$Pop.play()
-	frog_popped.emit()
+	frog_popped.emit(frog)
+	$FrogTimer.start()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -140,16 +140,15 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_frog_timer_timeout() -> void:
-	pass
+	score_frog()
 
 
 func _on_frog_sleeping_state_changed() -> void:
-	if not bubble_control:
-		print("rest now weary froggy")
+	score_frog()
 
 
 func score_frog() -> void:
-	if not frog_scored:
+	if not bubble_control and not frog_scored:
 		frog_scored = true
-		
-		calculate_score.emit()
+		frog.freeze = true
+		calculate_score.emit(frog)
