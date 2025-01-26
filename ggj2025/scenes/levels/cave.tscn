@@ -163,6 +163,9 @@ fog_density = 0.005
 [node name="Base" parent="crystal_cave" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qmj5m")
 
+[node name="StaticBody3D" parent="crystal_cave/Base" index="0"]
+collision_layer = 3
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.02062, 3.07978)
 mesh = SubResource("PlaneMesh_sqngc")
