@@ -18,6 +18,8 @@ enum MODE {TAP, PUSH}
 
 @onready var cooldown: Timer = $Timer as Timer
 
+@onready var animation: AnimationPlayer = $"Frog/frog/frog-fix-2/AnimationPlayer" as AnimationPlayer
+
 var shader: ShaderMaterial
 var bubble_control: bool = true
 var vstack: Array[Vector3] = []
@@ -29,6 +31,8 @@ func _ready() -> void:
 	shader = $MeshInstance3D.material_override
 	if mode == MODE.TAP:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		animation.play("Animation")
+		animation.seek(2.5, true, true)
 
 
 func _input(event: InputEvent) -> void:
@@ -44,6 +48,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("restart"):
 		get_tree().reload_current_scene()
+
 
 func _physics_process(delta: float) -> void:
 	if bubble_control:
@@ -65,6 +70,7 @@ func _physics_process(delta: float) -> void:
 				vstack.pop_back()
 	else:
 		camera.look_at(frog.global_position)
+	animation.advance(delta * 3.0)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -91,6 +97,7 @@ func tap_input(_delta: float) -> void:
 			frog.look_at(input)
 			input -= global_position
 			apply_central_force(input * tap_intensity)
+			animation.play("Animation")
 			cooldown.start()
 
 

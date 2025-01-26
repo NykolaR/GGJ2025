@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bo00wachdedgl"
-path="res://.godot/imported/frog.gltf-0907990aa56361e962f14a45ef0a235f.scn"
+uid="uid://c25b6tq0tjiv7"
+path="res://.godot/imported/frog-fix-2.gltf-f09c690d96ddace4d5370760a3189cfb.scn"
 
 [deps]
 
-source_file="res://assets/models/frog.gltf"
-dest_files=["res://.godot/imported/frog.gltf-0907990aa56361e962f14a45ef0a235f.scn"]
+source_file="res://assets/models/frog-fix-2.gltf"
+dest_files=["res://.godot/imported/frog-fix-2.gltf-f09c690d96ddace4d5370760a3189cfb.scn"]
 
 [params]
 
