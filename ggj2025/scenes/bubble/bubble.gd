@@ -41,7 +41,9 @@ func _input(event: InputEvent) -> void:
 		camera_y.rotate_y(-speed.x)
 		camera_x.rotate_x(-speed.y)
 		camera_x.rotation_degrees.x = clampf(camera_x.rotation_degrees.x, -87, 87)
-
+	
+	if event.is_action_pressed("restart"):
+		get_tree().reload_current_scene()
 
 func _physics_process(delta: float) -> void:
 	if bubble_control:
