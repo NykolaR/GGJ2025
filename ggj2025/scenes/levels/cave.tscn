@@ -1,7 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=29 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
+[ext_resource type="AudioStream" uid="uid://b5xb0circeqev" path="res://assets/audio/cave_ambience.wav" id="3_sqngc"]
 
 [sub_resource type="Gradient" id="Gradient_70gw8"]
 colors = PackedColorArray(0, 0, 0, 1, 0.419813, 0.419813, 0.419813, 1)
@@ -193,5 +194,9 @@ omni_range = 30.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pwkrs")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_sqngc")
+autoplay = true
 
 [editable path="crystal_cave"]

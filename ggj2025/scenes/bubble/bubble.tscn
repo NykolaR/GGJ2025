@@ -1,8 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqnkqd4qp7f7m"]
+[gd_scene load_steps=16 format=3 uid="uid://dqnkqd4qp7f7m"]
 
 [ext_resource type="Script" uid="uid://bl7ywij8kmhyv" path="res://scenes/bubble/bubble.gd" id="1_v753p"]
 [ext_resource type="Shader" uid="uid://dg40tftgivbd4" path="res://assets/shaders/bubble.gdshader" id="2_wsujy"]
 [ext_resource type="PackedScene" uid="uid://bo00wachdedgl" path="res://assets/models/frog.gltf" id="3_nyk43"]
+[ext_resource type="AudioStream" uid="uid://mjistdm5uod2" path="res://assets/audio/bubble_movement_loop.wav" id="4_igr3j"]
+[ext_resource type="AudioStream" uid="uid://d4b651ajm76yk" path="res://assets/audio/bubble_pop_1.wav" id="5_8a5yt"]
+[ext_resource type="AudioStream" uid="uid://bkea32igk2su2" path="res://assets/audio/bubble_pop_2.wav" id="6_plfqy"]
+[ext_resource type="AudioStream" uid="uid://cf387aqccpqh8" path="res://assets/audio/bubble_pop_3.wav" id="7_f83y5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ya7gu"]
 radius = 0.2
@@ -30,6 +34,12 @@ albedo_color = Color(0.45, 0.75, 0.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nyk43"]
 size = Vector3(0.195, 0.07, 0.335)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kp1mu"]
+streams_count = 3
+stream_0/stream = ExtResource("5_8a5yt")
+stream_1/stream = ExtResource("6_plfqy")
+stream_2/stream = ExtResource("7_f83y5")
 
 [node name="Bubble" type="RigidBody3D"]
 gravity_scale = 0.1
@@ -146,5 +156,11 @@ shape = SubResource("BoxShape3D_nyk43")
 process_mode = 3
 remote_path = NodePath("../../Camera")
 update_rotation = false
+
+[node name="Swim" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_igr3j")
+
+[node name="Pop" type="AudioStreamPlayer3D" parent="."]
+stream = SubResource("AudioStreamRandomizer_kp1mu")
 
 [editable path="Frog/frog/frog"]
