@@ -1,4 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://dtn1vmauqauex"]
+[gd_scene load_steps=16 format=3 uid="uid://dtn1vmauqauex"]
+
+[ext_resource type="Script" uid="uid://fgx7jk56tay" path="res://scenes/environment/landing.gd" id="1_0w6v3"]
 
 [sub_resource type="Gradient" id="Gradient_70gw8"]
 offsets = PackedFloat32Array(0.297101, 1)
@@ -64,7 +66,17 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 metadata/_snap_enabled = true
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_us2u6"]
+radius = 1.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0w6v3"]
+radius = 2.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_uxbow"]
+radius = 4.0
+
 [node name="Landing" type="StaticBody3D"]
+script = ExtResource("1_0w6v3")
 
 [node name="Top" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_us2u6")
@@ -136,3 +148,24 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "10"
 horizontal_alignment = 1
+
+[node name="50" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="50"]
+shape = SubResource("CylinderShape3D_us2u6")
+
+[node name="30" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="30"]
+shape = SubResource("CylinderShape3D_0w6v3")
+
+[node name="10" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="10"]
+shape = SubResource("CylinderShape3D_uxbow")

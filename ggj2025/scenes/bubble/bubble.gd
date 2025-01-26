@@ -25,7 +25,12 @@ var shader: ShaderMaterial
 var bubble_control: bool = true
 var vstack: Array[Vector3] = []
 
+var frog_scored
 var direction: Vector3 = Vector3()
+
+signal frog_popped
+signal calculate_score
+signal tap_inputted(direction: Vector3)
 
 
 func _ready() -> void:
@@ -37,18 +42,21 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("mouse_unlock"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		get_tree().quit()
-	
-	if bubble_control and event is InputEventMouseMotion:
-		var speed: Vector2 = event.relative * camera_sens_mult
-		camera_y.rotate_y(-speed.x)
-		camera_x.rotate_x(-speed.y)
-		camera_x.rotation_degrees.x = clampf(camera_x.rotation_degrees.x, -87, 87)
-	
-	if event.is_action_pressed("restart"):
-		get_tree().reload_current_scene()
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if event.is_action_pressed("mouse_unlock"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		
+		if bubble_control and event is InputEventMouseMotion:
+			var speed: Vector2 = event.relative * camera_sens_mult
+			camera_y.rotate_y(-speed.x)
+			camera_x.rotate_x(-speed.y)
+			camera_x.rotation_degrees.x = clampf(camera_x.rotation_degrees.x, -87, 87)
+		
+		if event.is_action_pressed("restart"):
+			get_tree().reload_current_scene()
+	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+		if event.is_action_pressed("mouse_unlock"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _physics_process(delta: float) -> void:
@@ -101,6 +109,8 @@ func tap_input(_delta: float) -> void:
 			animation.play("Animation")
 			cooldown.start()
 			swim_audio.play()
+			
+			tap_inputted.emit(input)
 
 
 func mouse_input(_delta: float) -> void:
@@ -122,7 +132,24 @@ func pop() -> void:
 	frog.angular_velocity = angular_velocity
 	freeze = true
 	$Pop.play()
+	frog_popped.emit()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	swim_audio.stop()
+
+
+func _on_frog_timer_timeout() -> void:
+	pass
+
+
+func _on_frog_sleeping_state_changed() -> void:
+	if not bubble_control:
+		print("rest now weary froggy")
+
+
+func score_frog() -> void:
+	if not frog_scored:
+		frog_scored = true
+		
+		calculate_score.emit()
