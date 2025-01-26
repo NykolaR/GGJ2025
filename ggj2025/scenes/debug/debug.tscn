@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhu22u8bxpndt"]
 
 [ext_resource type="PackedScene" uid="uid://dqnkqd4qp7f7m" path="res://scenes/bubble/bubble.tscn" id="1_kfclf"]
-[ext_resource type="Script" uid="uid://ddpty0au6n23v" path="res://scenes/debug/debug.gd" id="1_pa0g8"]
+[ext_resource type="Script" path="res://scenes/debug/debug.gd" id="1_pa0g8"]
 [ext_resource type="PackedScene" uid="uid://btxi0ibsi5l4q" path="res://scenes/levels/cave.tscn" id="2_fym4n"]
 [ext_resource type="FontFile" uid="uid://dksn3jfeg2fc3" path="res://assets/fonts/HappyMonkey-Regular.ttf" id="4_oa6p7"]
 
