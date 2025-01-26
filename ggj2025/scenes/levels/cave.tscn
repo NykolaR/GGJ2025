@@ -353,5 +353,6 @@ transform = Transform3D(0.849794, 0.227718, 0.475388, 0.369016, 0.386996, -0.845
 
 [node name="Landing" parent="." instance=ExtResource("7_yftsl")]
 transform = Transform3D(0.785382, 0, -0.619012, 0, 1, 0, 0.619012, 0, 0.785382, 20.698, -14, -63.5474)
+collision_layer = 3
 
 [editable path="crystal_cave"]

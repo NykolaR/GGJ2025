@@ -137,11 +137,14 @@ func pop() -> void:
 		$Frog/RemoteTransform3D2.queue_free()
 	bubble_control = false
 	frog.process_mode = Node.PROCESS_MODE_PAUSABLE
-	$Bindle.process_mode = Node.PROCESS_MODE_PAUSABLE
 	frog.linear_velocity = linear_velocity
 	frog.angular_velocity = angular_velocity
+	$Bindle.process_mode = Node.PROCESS_MODE_PAUSABLE
 	$Bindle.linear_velocity = linear_velocity
 	$Bindle.angular_velocity = angular_velocity
+	$CricketJam.process_mode = Node.PROCESS_MODE_PAUSABLE
+	$CricketJam.linear_velocity = linear_velocity
+	$CricketJam.angular_velocity = angular_velocity
 	freeze = true
 	$Pop.play()
 	frog_popped.emit(frog)

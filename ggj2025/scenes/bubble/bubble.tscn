@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://dqnkqd4qp7f7m"]
+[gd_scene load_steps=36 format=4 uid="uid://dqnkqd4qp7f7m"]
 
 [ext_resource type="Script" uid="uid://bl7ywij8kmhyv" path="res://scenes/bubble/bubble.gd" id="1_v753p"]
 [ext_resource type="Shader" uid="uid://dg40tftgivbd4" path="res://assets/shaders/bubble.gdshader" id="2_wsujy"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://y1y4u10dycn5" path="res://assets/models/bindle.gltf" id="4_8a5yt"]
 [ext_resource type="AudioStream" uid="uid://mjistdm5uod2" path="res://assets/audio/bubble_movement_loop.wav" id="4_igr3j"]
 [ext_resource type="AudioStream" uid="uid://d4b651ajm76yk" path="res://assets/audio/bubble_pop_1.wav" id="5_8a5yt"]
+[ext_resource type="PackedScene" uid="uid://dwebriy1w41t4" path="res://assets/models/cricket-jam.gltf" id="5_plfqy"]
 [ext_resource type="AudioStream" uid="uid://bkea32igk2su2" path="res://assets/audio/bubble_pop_2.wav" id="6_plfqy"]
 [ext_resource type="AudioStream" uid="uid://cf387aqccpqh8" path="res://assets/audio/bubble_pop_3.wav" id="7_f83y5"]
 
@@ -114,6 +115,28 @@ albedo_color = Color(0.690196, 0.188235, 0.360784, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wwciu"]
 albedo_color = Color(0.729412, 0.380392, 0.337255, 1)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_plfqy"]
+height = 0.05
+radius = 0.018
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f83y5"]
+size = Vector3(0.03, 0.05, 0.03)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f83y5"]
+albedo_color = Color(0.729412, 0.380392, 0.337255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tbs6"]
+transparency = 1
+albedo_color = Color(0.3, 0.65, 1, 0.235294)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_plfqy"]
+top_radius = 0.02
+bottom_radius = 0.02
+height = 0.03
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bynny"]
+albedo_color = Color(0.341176, 0.160784, 0.294118, 1)
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kp1mu"]
 streams_count = 3
 stream_0/stream = ExtResource("5_8a5yt")
@@ -189,23 +212,9 @@ transform = Transform3D(8.60819e-07, 0, 2.38015, 0, 1, 0, -4.42109, 0, 4.63432e-
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
 
-[node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature" index="0"]
-bones/0/rotation = Quaternion(0.286139, -0.286, -0.646818, 0.646494)
-bones/1/rotation = Quaternion(-0.99124, -0.000246581, 3.6728e-05, 0.132074)
-bones/2/rotation = Quaternion(0.234041, 0.233928, 0.667438, 0.667105)
-bones/3/rotation = Quaternion(-0.993891, 0.000247273, -3.12297e-05, 0.110363)
-
 [node name="Icosphere_003" parent="Frog/frog/frog-fix-2/Armature/Skeleton3D" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
-
-[node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature_001" index="0"]
-bones/0/rotation = Quaternion(0.688111, 0.688063, -0.163693, -0.162102)
-bones/1/rotation = Quaternion(-0.989501, 0.000651446, -9.26817e-05, 0.144525)
-bones/2/rotation = Quaternion(0.764042, 0.00224684, 0.000856781, 0.645161)
-bones/3/rotation = Quaternion(0.696361, -0.698399, 0.116704, -0.117045)
-bones/4/rotation = Quaternion(-0.99025, 0.00354542, 9.16488e-05, 0.139259)
-bones/5/rotation = Quaternion(0.684335, -0.00201421, -0.000962242, 0.729164)
 
 [node name="Icosphere_002" parent="Frog/frog/frog-fix-2/Armature_001/Skeleton3D" index="0"]
 layers = 2
@@ -257,6 +266,38 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fpq3n")
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_wwciu")
 
+[node name="CricketJam" type="RigidBody3D" parent="."]
+process_mode = 4
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.119047, 0, 0)
+collision_layer = 9
+physics_material_override = SubResource("PhysicsMaterial_8a5yt")
+freeze_mode = 1
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CricketJam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CylinderShape3D_plfqy")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="CricketJam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_f83y5")
+
+[node name="cricket-jam" parent="CricketJam" instance=ExtResource("5_plfqy")]
+transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0, 0)
+
+[node name="Cylinder" parent="CricketJam/cricket-jam" index="0"]
+layers = 2
+surface_material_override/0 = SubResource("StandardMaterial3D_f83y5")
+surface_material_override/1 = SubResource("StandardMaterial3D_4tbs6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CricketJam"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00509968, 0)
+layers = 2
+mesh = SubResource("CylinderMesh_plfqy")
+surface_material_override/0 = SubResource("StandardMaterial3D_bynny")
+
 [node name="Swim" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_igr3j")
 
@@ -279,3 +320,4 @@ one_shot = true
 
 [editable path="Frog/frog/frog-fix-2"]
 [editable path="Bindle/bindle"]
+[editable path="CricketJam/cricket-jam"]

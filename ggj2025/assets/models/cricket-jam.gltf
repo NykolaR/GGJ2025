@@ -29,6 +29,14 @@
 						"TEXCOORD_0":2
 					},
 					"indices":3
+				},
+				{
+					"attributes":{
+						"POSITION":4,
+						"NORMAL":5,
+						"TEXCOORD_0":6
+					},
+					"indices":7
 				}
 			]
 		}
@@ -37,10 +45,44 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":142,
+			"count":35,
+			"max":[
+				0.9464540481567383,
+				1,
+				0.8746550679206848
+			],
+			"min":[
+				-0.9464540481567383,
+				0.7222222089767456,
+				-0.9707939028739929
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":1,
+			"componentType":5126,
+			"count":35,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":2,
+			"componentType":5126,
+			"count":35,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":3,
+			"componentType":5123,
+			"count":57,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":4,
+			"componentType":5126,
+			"count":114,
 			"max":[
 				0.9749279022216797,
-				1,
+				0.7222222089767456,
 				0.9009688496589661
 			],
 			"min":[
@@ -51,53 +93,77 @@
 			"type":"VEC3"
 		},
 		{
-			"bufferView":1,
+			"bufferView":5,
 			"componentType":5126,
-			"count":142,
+			"count":114,
 			"type":"VEC3"
 		},
 		{
-			"bufferView":2,
+			"bufferView":6,
 			"componentType":5126,
-			"count":142,
+			"count":114,
 			"type":"VEC2"
 		},
 		{
-			"bufferView":3,
+			"bufferView":7,
 			"componentType":5123,
-			"count":240,
+			"count":198,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":1704,
+			"byteLength":420,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1704,
-			"byteOffset":1704,
+			"byteLength":420,
+			"byteOffset":420,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1136,
-			"byteOffset":3408,
+			"byteLength":280,
+			"byteOffset":840,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":480,
-			"byteOffset":4544,
+			"byteLength":114,
+			"byteOffset":1120,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1368,
+			"byteOffset":1236,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1368,
+			"byteOffset":2604,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":912,
+			"byteOffset":3972,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":396,
+			"byteOffset":4884,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":5024,
+			"byteLength":5280,
 			"uri":"cricket-jam.bin"
 		}
 	]
