@@ -147,6 +147,7 @@ one_shot = true
 
 [node name="Frog" type="RigidBody3D" parent="."]
 process_mode = 4
+collision_layer = 9
 physics_material_override = SubResource("PhysicsMaterial_nyk43")
 continuous_cd = true
 contact_monitor = true
@@ -212,6 +213,7 @@ shadow_enabled = true
 shadow_caster_mask = 4294967293
 
 [node name="FrogTimer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 
 [connection signal="sleeping_state_changed" from="Frog" to="." method="_on_frog_sleeping_state_changed"]

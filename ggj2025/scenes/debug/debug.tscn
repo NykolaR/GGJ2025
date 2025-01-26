@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhu22u8bxpndt"]
+[gd_scene load_steps=9 format=3 uid="uid://dhu22u8bxpndt"]
 
 [ext_resource type="PackedScene" uid="uid://dqnkqd4qp7f7m" path="res://scenes/bubble/bubble.tscn" id="1_kfclf"]
+[ext_resource type="Script" uid="uid://ddpty0au6n23v" path="res://scenes/debug/debug.gd" id="1_pa0g8"]
 [ext_resource type="PackedScene" uid="uid://btxi0ibsi5l4q" path="res://scenes/levels/cave.tscn" id="2_fym4n"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_klwu5"]
@@ -21,6 +22,7 @@ uv1_scale = Vector3(0.06, 0.06, 0.06)
 uv1_triplanar = true
 
 [node name="Debug" type="Node3D"]
+script = ExtResource("1_pa0g8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -33,9 +35,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 14)
 
 [node name="Cave" parent="." instance=ExtResource("2_fym4n")]
 
-[node name="UI" type="VBoxContainer" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="calculate_score" from="Bubble" to="." method="_on_bubble_calculate_score"]
+[connection signal="frog_popped" from="Bubble" to="." method="frog_popped"]
 
 [editable path="Cave"]
 [editable path="Cave/crystal_cave"]
