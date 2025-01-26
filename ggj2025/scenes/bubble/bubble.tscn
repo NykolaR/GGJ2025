@@ -148,6 +148,9 @@ one_shot = true
 [node name="Frog" type="RigidBody3D" parent="."]
 process_mode = 4
 physics_material_override = SubResource("PhysicsMaterial_nyk43")
+continuous_cd = true
+contact_monitor = true
+max_contacts_reported = 1
 
 [node name="frog" type="Node3D" parent="Frog"]
 
@@ -156,21 +159,24 @@ transform = Transform3D(0.025, 0, 0, 0, 0.025, 0, 0, 0, 0.025, 0, 0.025836, -0.0
 
 [node name="Icosphere" parent="Frog/frog/frog-fix-2" index="0"]
 transform = Transform3D(1.94707e-07, 0, 1, 0, 1, 0, -1, 0, 1.94707e-07, -0.0104955, 0, -0.00353003)
+layers = 2
 mesh = SubResource("ArrayMesh_k1x0k")
 surface_material_override/0 = SubResource("StandardMaterial3D_igr3j")
 surface_material_override/1 = SubResource("StandardMaterial3D_8a5yt")
 
 [node name="Icosphere_001" parent="Frog/frog/frog-fix-2" index="1"]
 transform = Transform3D(8.60819e-07, 0, 2.38015, 0, 1, 0, -4.42109, 0, 4.63432e-07, -0.0391948, -1.32366, 2.4615)
+layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
 
 [node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature" index="0"]
-bones/0/rotation = Quaternion(0.320572, -0.320416, -0.630462, 0.630147)
-bones/1/rotation = Quaternion(-0.987635, -0.000245651, 4.28641e-05, 0.156772)
-bones/2/rotation = Quaternion(0.289262, 0.289121, 0.645427, 0.645105)
-bones/3/rotation = Quaternion(-0.978585, 0.000243325, -5.49426e-05, 0.205845)
+bones/0/rotation = Quaternion(0.286139, -0.286, -0.646818, 0.646494)
+bones/1/rotation = Quaternion(-0.99124, -0.000246581, 3.6728e-05, 0.132074)
+bones/2/rotation = Quaternion(0.234041, 0.233928, 0.667438, 0.667105)
+bones/3/rotation = Quaternion(-0.993891, 0.000247273, -3.12297e-05, 0.110363)
 
 [node name="Icosphere_003" parent="Frog/frog/frog-fix-2/Armature/Skeleton3D" index="0"]
+layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
 
 [node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature_001" index="0"]
@@ -182,6 +188,7 @@ bones/4/rotation = Quaternion(-0.99025, 0.00354542, 9.16488e-05, 0.139259)
 bones/5/rotation = Quaternion(0.684335, -0.00201421, -0.000962242, 0.729164)
 
 [node name="Icosphere_002" parent="Frog/frog/frog-fix-2/Armature_001/Skeleton3D" index="0"]
+layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Frog"]
@@ -197,5 +204,13 @@ stream = ExtResource("4_igr3j")
 
 [node name="Pop" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_kp1mu")
+
+[node name="Ambie" type="OmniLight3D" parent="."]
+light_energy = 0.3
+light_cull_mask = 4294967293
+shadow_enabled = true
+shadow_caster_mask = 4294967293
+
+[connection signal="animation_finished" from="Frog/frog/frog-fix-2/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 
 [editable path="Frog/frog/frog-fix-2"]

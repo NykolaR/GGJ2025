@@ -19,6 +19,7 @@ enum MODE {TAP, PUSH}
 @onready var cooldown: Timer = $Timer as Timer
 
 @onready var animation: AnimationPlayer = $"Frog/frog/frog-fix-2/AnimationPlayer" as AnimationPlayer
+@onready var swim_audio: AudioStreamPlayer3D = $Swim as AudioStreamPlayer3D
 
 var shader: ShaderMaterial
 var bubble_control: bool = true
@@ -99,6 +100,7 @@ func tap_input(_delta: float) -> void:
 			apply_central_force(input * tap_intensity)
 			animation.play("Animation")
 			cooldown.start()
+			swim_audio.play()
 
 
 func mouse_input(_delta: float) -> void:
@@ -120,3 +122,7 @@ func pop() -> void:
 	frog.angular_velocity = angular_velocity
 	freeze = true
 	$Pop.play()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	swim_audio.stop()
