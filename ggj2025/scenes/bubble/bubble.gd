@@ -133,10 +133,15 @@ func pop() -> void:
 	$MeshInstance3D.hide()
 	if has_node("Frog/RemoteTransform3D"):
 		$Frog/RemoteTransform3D.queue_free()
+	if has_node("Frog/RemoteTransform3D2"):
+		$Frog/RemoteTransform3D2.queue_free()
 	bubble_control = false
 	frog.process_mode = Node.PROCESS_MODE_PAUSABLE
+	$Bindle.process_mode = Node.PROCESS_MODE_PAUSABLE
 	frog.linear_velocity = linear_velocity
 	frog.angular_velocity = angular_velocity
+	$Bindle.linear_velocity = linear_velocity
+	$Bindle.angular_velocity = angular_velocity
 	freeze = true
 	$Pop.play()
 	frog_popped.emit(frog)
