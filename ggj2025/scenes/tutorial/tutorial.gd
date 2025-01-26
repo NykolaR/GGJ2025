@@ -4,6 +4,8 @@ extends Node3D
 
 @onready var textlabel = $CanvasLayer/RichTextLabel
 
+var tween: Tween
+
 static var states = {
 	"Move Up (W, D-Up)": false,
 	"Move Down (S, D-Down)": false,
@@ -21,11 +23,11 @@ func update_text ():
 	for key in states.keys():
 		if states[key] == false:
 			textlabel.append_text(key + "\n")
-		else:
-			textlabel.append_text("[s]" + key + "[/s]\n")
 			
 func _ready ():
 	update_text()
+	tween.tween_property($CanvasLayer/ColorRect, "modulate", Color(0, 0, 0, 1), 2.0)
+	tween.stop()
 
 
 func _on_bubble_tap_inputted(direction: Vector3) -> void:
@@ -52,11 +54,11 @@ func _on_bubble_restart() -> void:
 	
 
 
-func _on_bubble_frog_popped() -> void:
+func _on_bubble_frog_popped(_a) -> void:
 	states["Pop (Space, (X) )"] = true
 	update_text()
 
 
-func _on_bubble_calculate_score() -> void:
+func _on_bubble_calculate_score(_a) -> void:
 	states["Land"] = true
 	update_text()
