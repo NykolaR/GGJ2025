@@ -10,7 +10,7 @@ enum MODE {TAP, PUSH}
 
 @onready var camera_y: Node3D = $Camera/CameraY as Node3D
 @onready var camera_x: Node3D = $Camera/CameraY/CameraX as Node3D
-@onready var camera: Camera3D = $Camera/CameraY/CameraX/Camera3D as Camera3D
+@onready var camera: Camera3D = $Camera/CameraY/CameraX/SpringArm3D/Camera3D as Camera3D
 @onready var big_ant: Node3D = $Camera/CameraY/CameraX/BigAnt as Node3D
 @onready var ant: Node3D = $Camera/CameraY/CameraX/BigAnt/Ant as Node3D
 @onready var frog_visual: Node3D = $Frog/frog as Node3D
@@ -20,6 +20,7 @@ enum MODE {TAP, PUSH}
 
 var shader: ShaderMaterial
 var bubble_control: bool = true
+var vstack: Array[Vector3] = []
 
 var direction: Vector3 = Vector3()
 
@@ -35,7 +36,7 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		get_tree().quit()
 	
-	if event is InputEventMouseMotion:
+	if bubble_control and event is InputEventMouseMotion:
 		var speed: Vector2 = event.relative * camera_sens_mult
 		camera_y.rotate_y(-speed.x)
 		camera_x.rotate_x(-speed.y)
@@ -54,20 +55,30 @@ func _physics_process(delta: float) -> void:
 		shader.set_shader_parameter("fuwafuwa_size", remap(clampf(vl, 0, 10), 0, 10, 0.05, 0.1))
 		if Input.is_action_just_pressed("pop"):
 			pop()
+		else:
+			if vstack.size() < 5:
+				vstack.append(linear_velocity)
+			else:
+				vstack.push_front(linear_velocity)
+				vstack.pop_back()
+	else:
+		camera.look_at(frog.global_position)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var i: int = 0
 	while i < state.get_contact_count():
 		var normal: Vector3 = state.get_contact_local_normal(i)
-		var dot: float = linear_velocity.normalized().dot(normal) * clampf(linear_velocity.length(), 1, 5)
-		if dot < -0.5:
+		var lv: Vector3 = vstack.back()
+		#print(state.linear_velocity.normalized().dot(normal))
+		var dot: float = lv.normalized().dot(normal) * clampf(lv.length(), 0.1, 2.5)
+		if dot < -0.8:
 			pop()
 			return
 		i += 1
 
 
-func tap_input(delta: float) -> void:
+func tap_input(_delta: float) -> void:
 	if cooldown.is_stopped():
 		var input: Vector3 = Vector3()
 		input.x = Input.get_axis("tap_left", "tap_right")
@@ -81,7 +92,7 @@ func tap_input(delta: float) -> void:
 			cooldown.start()
 
 
-func mouse_input(delta: float) -> void:
+func mouse_input(_delta: float) -> void:
 	var mp2d: Vector2 = get_viewport().get_mouse_position() / Vector2(get_viewport().get_size())
 	mp2d -= Vector2(0.5, 0.5)
 	mp2d *= 2.0
@@ -92,6 +103,8 @@ func mouse_input(delta: float) -> void:
 
 func pop() -> void:
 	$MeshInstance3D.hide()
+	if has_node("Frog/RemoteTransform3D"):
+		$Frog/RemoteTransform3D.queue_free()
 	bubble_control = false
 	frog.process_mode = Node.PROCESS_MODE_PAUSABLE
 	frog.linear_velocity = linear_velocity
