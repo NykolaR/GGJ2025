@@ -13,11 +13,13 @@ enum MODE {TAP, PUSH}
 @onready var camera: Camera3D = $Camera/CameraY/CameraX/Camera3D as Camera3D
 @onready var big_ant: Node3D = $Camera/CameraY/CameraX/BigAnt as Node3D
 @onready var ant: Node3D = $Camera/CameraY/CameraX/BigAnt/Ant as Node3D
-@onready var frog: Node3D = $frog as Node3D
+@onready var frog_visual: Node3D = $Frog/frog as Node3D
+@onready var frog: RigidBody3D = $Frog as RigidBody3D
 
 @onready var cooldown: Timer = $Timer as Timer
 
 var shader: ShaderMaterial
+var bubble_control: bool = true
 
 var direction: Vector3 = Vector3()
 
@@ -41,14 +43,28 @@ func _input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	match mode:
-		MODE.TAP:
-			tap_input(delta)
-		MODE.PUSH:
-			mouse_input(delta)
-	var vl: float = linear_velocity.length()
-	shader.set_shader_parameter("fuwafuwa_speed", remap(clampf(vl, 0, 10), 0, 10, 1.5, 2.5))
-	shader.set_shader_parameter("fuwafuwa_size", remap(clampf(vl, 0, 10), 0, 10, 0.05, 0.1))
+	if bubble_control:
+		match mode:
+			MODE.TAP:
+				tap_input(delta)
+			MODE.PUSH:
+				mouse_input(delta)
+		var vl: float = linear_velocity.length()
+		shader.set_shader_parameter("fuwafuwa_speed", remap(clampf(vl, 0, 10), 0, 10, 1.5, 2.5))
+		shader.set_shader_parameter("fuwafuwa_size", remap(clampf(vl, 0, 10), 0, 10, 0.05, 0.1))
+		if Input.is_action_just_pressed("pop"):
+			pop()
+
+
+func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	var i: int = 0
+	while i < state.get_contact_count():
+		var normal: Vector3 = state.get_contact_local_normal(i)
+		var dot: float = linear_velocity.normalized().dot(normal) * clampf(linear_velocity.length(), 1, 5)
+		if dot < -0.5:
+			pop()
+			return
+		i += 1
 
 
 func tap_input(delta: float) -> void:
@@ -74,5 +90,10 @@ func mouse_input(delta: float) -> void:
 	apply_central_force(force)
 
 
-func funny() -> void:
-	pass
+func pop() -> void:
+	$MeshInstance3D.hide()
+	bubble_control = false
+	frog.process_mode = Node.PROCESS_MODE_PAUSABLE
+	frog.linear_velocity = linear_velocity
+	frog.angular_velocity = angular_velocity
+	freeze = true

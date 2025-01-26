@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dqnkqd4qp7f7m"]
+[gd_scene load_steps=11 format=3 uid="uid://dqnkqd4qp7f7m"]
 
 [ext_resource type="Script" uid="uid://bl7ywij8kmhyv" path="res://scenes/bubble/bubble.gd" id="1_v753p"]
 [ext_resource type="Shader" uid="uid://dg40tftgivbd4" path="res://assets/shaders/bubble.gdshader" id="2_wsujy"]
@@ -19,14 +19,23 @@ shader_parameter/noise_scale = 0.5
 
 [sub_resource type="SphereMesh" id="SphereMesh_v753p"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_nyk43"]
+bounce = 0.3
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u8xl"]
 albedo_color = Color(0.45, 0.75, 0.5, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h4fmw"]
 albedo_color = Color(0.45, 0.75, 0.5, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nyk43"]
+size = Vector3(0.195, 0.07, 0.335)
+
 [node name="Bubble" type="RigidBody3D"]
 gravity_scale = 0.1
+freeze_mode = 1
+contact_monitor = true
+max_contacts_reported = 3
 linear_damp = 1.0
 script = ExtResource("1_v753p")
 
@@ -37,10 +46,6 @@ shape = SubResource("SphereShape3D_ya7gu")
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_nyk43")
 mesh = SubResource("SphereMesh_v753p")
-
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="."]
-remote_path = NodePath("../Camera")
-update_rotation = false
 
 [node name="Camera" type="Node3D" parent="."]
 top_level = true
@@ -62,72 +67,84 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 process_callback = 0
 one_shot = true
 
-[node name="frog" type="Node3D" parent="."]
+[node name="Frog" type="RigidBody3D" parent="."]
+process_mode = 4
+physics_material_override = SubResource("PhysicsMaterial_nyk43")
 
-[node name="frog" parent="frog" instance=ExtResource("3_nyk43")]
+[node name="frog" type="Node3D" parent="Frog"]
+
+[node name="frog" parent="Frog/frog" instance=ExtResource("3_nyk43")]
 transform = Transform3D(-1.31134e-09, 0, 0.03, 0, 0.03, 0, -0.03, 0, -1.31134e-09, 0.000452042, 0.0399793, -0.0422597)
 
-[node name="Icosphere" parent="frog/frog" index="0"]
+[node name="Icosphere" parent="Frog/frog/frog" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1u8xl")
 
-[node name="Icosphere_001" parent="frog/frog" index="1"]
+[node name="Icosphere_001" parent="Frog/frog/frog" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_002" parent="frog/frog" index="2"]
+[node name="Icosphere_002" parent="Frog/frog/frog" index="2"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_003" parent="frog/frog" index="3"]
+[node name="Icosphere_003" parent="Frog/frog/frog" index="3"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_004" parent="frog/frog" index="4"]
+[node name="Icosphere_004" parent="Frog/frog/frog" index="4"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_005" parent="frog/frog" index="5"]
+[node name="Icosphere_005" parent="Frog/frog/frog" index="5"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_006" parent="frog/frog" index="6"]
+[node name="Icosphere_006" parent="Frog/frog/frog" index="6"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_007" parent="frog/frog" index="7"]
+[node name="Icosphere_007" parent="Frog/frog/frog" index="7"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_008" parent="frog/frog" index="8"]
+[node name="Icosphere_008" parent="Frog/frog/frog" index="8"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_009" parent="frog/frog" index="9"]
+[node name="Icosphere_009" parent="Frog/frog/frog" index="9"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_010" parent="frog/frog" index="10"]
+[node name="Icosphere_010" parent="Frog/frog/frog" index="10"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_011" parent="frog/frog" index="11"]
+[node name="Icosphere_011" parent="Frog/frog/frog" index="11"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_012" parent="frog/frog" index="12"]
+[node name="Icosphere_012" parent="Frog/frog/frog" index="12"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_013" parent="frog/frog" index="13"]
+[node name="Icosphere_013" parent="Frog/frog/frog" index="13"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_014" parent="frog/frog" index="14"]
+[node name="Icosphere_014" parent="Frog/frog/frog" index="14"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_015" parent="frog/frog" index="15"]
+[node name="Icosphere_015" parent="Frog/frog/frog" index="15"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_016" parent="frog/frog" index="16"]
+[node name="Icosphere_016" parent="Frog/frog/frog" index="16"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_017" parent="frog/frog" index="17"]
+[node name="Icosphere_017" parent="Frog/frog/frog" index="17"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_018" parent="frog/frog" index="18"]
+[node name="Icosphere_018" parent="Frog/frog/frog" index="18"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_020" parent="frog/frog" index="19"]
+[node name="Icosphere_020" parent="Frog/frog/frog" index="19"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_019" parent="frog/frog" index="20"]
+[node name="Icosphere_019" parent="Frog/frog/frog" index="20"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[editable path="frog/frog"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Frog"]
+shape = SubResource("BoxShape3D_nyk43")
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Frog"]
+process_mode = 3
+remote_path = NodePath("../../Camera")
+update_rotation = false
+
+[editable path="Frog/frog/frog"]
