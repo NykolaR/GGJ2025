@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dhu22u8bxpndt"]
+[gd_scene load_steps=11 format=3 uid="uid://dhu22u8bxpndt"]
 
 [ext_resource type="PackedScene" uid="uid://dqnkqd4qp7f7m" path="res://scenes/bubble/bubble.tscn" id="1_kfclf"]
 [ext_resource type="Script" uid="uid://ddpty0au6n23v" path="res://scenes/debug/debug.gd" id="1_pa0g8"]
 [ext_resource type="PackedScene" uid="uid://btxi0ibsi5l4q" path="res://scenes/levels/cave.tscn" id="2_fym4n"]
+[ext_resource type="FontFile" uid="uid://dksn3jfeg2fc3" path="res://assets/fonts/HappyMonkey-Regular.ttf" id="4_oa6p7"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_klwu5"]
 
@@ -21,6 +22,10 @@ albedo_texture = SubResource("NoiseTexture2D_pa0g8")
 uv1_scale = Vector3(0.06, 0.06, 0.06)
 uv1_triplanar = true
 
+[sub_resource type="Theme" id="Theme_hxnlu"]
+default_font = ExtResource("4_oa6p7")
+default_font_size = 24
+
 [node name="Debug" type="Node3D"]
 script = ExtResource("1_pa0g8")
 
@@ -37,12 +42,80 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 14)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" type="VBoxContainer" parent="CanvasLayer"]
+[node name="ScoreDisplay" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_hxnlu")
+alignment = 1
+
+[node name="Base" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "BASE LANDING SCORE"
+horizontal_alignment = 1
+
+[node name="BaseValue" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="TimeMult" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "TIME SCORE MULTIPLIER"
+horizontal_alignment = 1
+
+[node name="TimeMultValue" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+
+[node name="LaunchMult" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "FROG LAUNCH DISTANCE MULTIPLIER"
+horizontal_alignment = 1
+
+[node name="LaunchMultValue" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "1"
+horizontal_alignment = 1
+
+[node name="FinalScore" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "FINAL SCORE"
+horizontal_alignment = 1
+
+[node name="FinalScoreValue" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "0"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
 
 [connection signal="calculate_score" from="Bubble" to="." method="_on_bubble_calculate_score"]
 [connection signal="frog_popped" from="Bubble" to="." method="frog_popped"]

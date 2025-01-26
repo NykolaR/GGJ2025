@@ -87,7 +87,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	while i < state.get_contact_count():
 		var normal: Vector3 = state.get_contact_local_normal(i)
 		var lv: Vector3 = vstack.back()
-		#print(state.linear_velocity.normalized().dot(normal))
 		var dot: float = lv.normalized().dot(normal) * clampf(lv.length(), 0.1, 2.5)
 		if dot < -0.8:
 			#pop()
