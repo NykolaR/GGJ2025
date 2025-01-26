@@ -119,6 +119,7 @@ horizontal_alignment = 1
 
 [connection signal="calculate_score" from="Bubble" to="." method="_on_bubble_calculate_score"]
 [connection signal="frog_popped" from="Bubble" to="." method="frog_popped"]
+[connection signal="restart" from="Bubble" to="." method="_on_bubble_restart"]
 
 [editable path="Cave"]
 [editable path="Cave/crystal_cave"]

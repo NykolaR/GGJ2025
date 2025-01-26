@@ -29,3 +29,7 @@ func _on_bubble_calculate_score(node: Node3D) -> void:
 		child.show()
 		await $CanvasLayer/Timer.timeout
 	$CanvasLayer/Timer.stop()
+
+
+func _on_bubble_restart() -> void:
+	get_tree().reload_current_scene()

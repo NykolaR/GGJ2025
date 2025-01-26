@@ -97,7 +97,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		var lv: Vector3 = vstack.back()
 		var dot: float = lv.normalized().dot(normal) * clampf(lv.length(), 0.1, 2.5)
 		if dot < -0.8:
-			#pop()
+			pop()
 			return
 		i += 1
 
@@ -117,7 +117,6 @@ func tap_input(_delta: float) -> void:
 			animation.play("Animation")
 			cooldown.start()
 			swim_audio.play()
-			
 
 
 func mouse_input(_delta: float) -> void:
@@ -149,6 +148,7 @@ func pop() -> void:
 	$Pop.play()
 	frog_popped.emit(frog)
 	$FrogTimer.start()
+	$Music.stop()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
@@ -168,3 +168,7 @@ func score_frog() -> void:
 		frog_scored = true
 		frog.freeze = true
 		calculate_score.emit(frog)
+
+
+func _on_frog_body_entered(body: Node) -> void:
+	$Frog/Bonk.play()
