@@ -110,3 +110,4 @@ func pop() -> void:
 	frog.linear_velocity = linear_velocity
 	frog.angular_velocity = angular_velocity
 	freeze = true
+	$Pop.play()
