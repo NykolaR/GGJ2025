@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://bpck8577am14b"]
+[gd_scene load_steps=45 format=4 uid="uid://bpck8577am14b"]
 
 [ext_resource type="FontFile" uid="uid://dksn3jfeg2fc3" path="res://assets/fonts/HappyMonkey-Regular.ttf" id="1_2amk3"]
 [ext_resource type="Script" uid="uid://bw8hb2cclk4y5" path="res://scenes/credits/credits.gd" id="1_icb2l"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="4_t15ab"]
 [ext_resource type="Shader" uid="uid://dg40tftgivbd4" path="res://assets/shaders/bubble.gdshader" id="5_lwbe5"]
 [ext_resource type="PackedScene" uid="uid://c25b6tq0tjiv7" path="res://assets/models/frog-fix-2.gltf" id="6_mxqwe"]
+[ext_resource type="PackedScene" uid="uid://btxi0ibsi5l4q" path="res://scenes/levels/cave.tscn" id="7_17l06"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wprml"]
 albedo_color = Color(0.235294, 0.639216, 0.439216, 1)
@@ -240,10 +241,16 @@ script = ExtResource("1_icb2l")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 91.0
-offset_top = 255.0
-offset_right = 1148.0
-offset_bottom = 657.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -528.0
+offset_top = -324.0
+offset_right = 529.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/normal_font = ExtResource("1_2amk3")
 theme_override_font_sizes/normal_font_size = 30
 text = "Font: Happy Monkey
@@ -253,10 +260,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 78.0
-offset_top = 1.0
-offset_right = 1135.0
-offset_bottom = 403.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -528.5
+offset_right = 528.5
+offset_bottom = 402.0
+grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("1_2amk3")
 theme_override_font_sizes/normal_font_size = 100
 text = "Game: Nyk
@@ -266,10 +276,16 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="CanvasLayer"]
-offset_left = 443.0
-offset_top = 538.0
-offset_right = 776.0
-offset_bottom = 622.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -166.5
+offset_top = -84.0
+offset_right = 166.5
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_2amk3")
 theme_override_font_sizes/font_size = 52
 text = "   Neat   "
@@ -286,6 +302,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="lilypad-village" parent="." instance=ExtResource("3_17l06")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68137, 0, -0.861088)
+visible = false
 
 [node name="Cylinder" parent="lilypad-village" index="0"]
 layers = 3
@@ -385,17 +402,17 @@ light_color = Color(1, 1, 0.392157, 1)
 environment = SubResource("Environment_oey34")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.961117, 0, -0.276141, 0, 1, 0, 0.276141, 0, 0.961117, -2.19375, 4.94921, 6.36147)
+transform = Transform3D(0.961117, 0, -0.276141, 0, 1, 0, 0.276141, 0, 0.961117, 2.20077, 4.94812, 7.82627)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.77968, 4.69724, 5.89848)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 2.61485, 4.69614, 7.36328)
 material_override = SubResource("ShaderMaterial_cl0rg")
 mesh = SubResource("SphereMesh_f22vk")
 skeleton = NodePath("../CanvasLayer/RichTextLabel2")
 
 [node name="Frog" type="RigidBody3D" parent="."]
 process_mode = 4
-transform = Transform3D(-0.397276, 0, 0.917699, 0, 1, 0, -0.917699, 0, -0.397276, -1.77968, 4.69724, 5.89848)
+transform = Transform3D(-0.397276, 0, 0.917699, 0, 1, 0, -0.917699, 0, -0.397276, 2.61485, 4.69614, 7.36328)
 collision_layer = 9
 physics_material_override = SubResource("PhysicsMaterial_hfxy3")
 continuous_cd = true
@@ -449,7 +466,12 @@ process_mode = 3
 remote_path = NodePath("../../Camera")
 update_rotation = false
 
+[node name="Cave" parent="." instance=ExtResource("7_17l06")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3414, 1.93699, -1.26363)
+
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 
 [editable path="lilypad-village"]
 [editable path="Frog/frog/frog-fix-2"]
+[editable path="Cave"]
+[editable path="Cave/crystal_cave"]
