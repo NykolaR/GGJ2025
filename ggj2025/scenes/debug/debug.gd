@@ -16,6 +16,7 @@ func frog_popped(frog: Node3D) -> void:
 func _on_bubble_calculate_score(node: Node3D) -> void:
 	var base_score: int = $Cave/Landing.get_score()
 	var dist: float = node.global_position.distance_to(pop_location)
+	@warning_ignore("narrowing_conversion")
 	var time_mult: int = clampf(5 - ((time - 30) / 30), 1, 5)
 	var dist_mult: int = floori(dist)
 	

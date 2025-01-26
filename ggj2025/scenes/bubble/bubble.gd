@@ -151,7 +151,7 @@ func pop() -> void:
 	$Music.stop()
 
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	swim_audio.stop()
 
 
@@ -170,5 +170,5 @@ func score_frog() -> void:
 		calculate_score.emit(frog)
 
 
-func _on_frog_body_entered(body: Node) -> void:
+func _on_frog_body_entered(_body: Node) -> void:
 	$Frog/Bonk.play()

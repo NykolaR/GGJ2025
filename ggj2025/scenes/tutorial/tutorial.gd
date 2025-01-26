@@ -4,8 +4,6 @@ extends Node3D
 
 @onready var textlabel = $CanvasLayer/RichTextLabel
 
-var tween:Tween = create_tween()  
-
 static var states = {
 	"Move Up (W, D-Up)": false,
 	"Move Down (S, D-Down)": false,
@@ -18,27 +16,17 @@ static var states = {
 	"Land": false
 }
 
-func _ready():
-	tween.tween_property($CanvasLayer/ColorRect,"modulate", Color(0,0,0,1), 2)
-	tween.stop()
-	update_text()
-	
 func update_text ():
 	textlabel.text = ""
 	for key in states.keys():
 		if states[key] == false:
 			textlabel.append_text(key + "\n")
-	
-	var overall_truth = true
-	for key in states.keys():
-		if states[key] == false:
-			overall_truth = false
-	if overall_truth:
-		tween.play()
-		tween.connect("finished", explore)
+		else:
+			textlabel.append_text("[s]" + key + "[/s]\n")
+			
+func _ready ():
+	update_text()
 
-func explore ():
-	get_tree().change_scene_to_file("res://scenes/debug/debug.tscn")
 
 func _on_bubble_tap_inputted(direction: Vector3) -> void:
 	if direction.is_equal_approx(Vector3(1.0,0,0)):
@@ -55,16 +43,20 @@ func _on_bubble_tap_inputted(direction: Vector3) -> void:
 		states["Move Forward (Left Click, R Bumper)"] = true
 	update_text()
 	
+	
+
+
 func _on_bubble_restart() -> void:
 	states["Restart (R, Select)"] = true
 	get_tree().reload_current_scene()
 	
-func _on_bubble_frog_popped(_a) -> void:
-	print ("called")
+
+
+func _on_bubble_frog_popped() -> void:
 	states["Pop (Space, (X) )"] = true
 	update_text()
 
-func _on_bubble_calculate_score(_a) -> void:
-	print ("called")
+
+func _on_bubble_calculate_score() -> void:
 	states["Land"] = true
 	update_text()
