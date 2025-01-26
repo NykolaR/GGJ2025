@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=33 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dx0j0tqumcwy4" path="res://scenes/environment/obelisk.tscn" id="4_qmj5m"]
 [ext_resource type="PackedScene" uid="uid://cw8d4v0ksxr1u" path="res://scenes/environment/eggplant.tscn" id="5_3xx83"]
 [ext_resource type="PackedScene" uid="uid://boc2firdbna1c" path="res://scenes/environment/hedgehog.tscn" id="6_v2pta"]
+[ext_resource type="PackedScene" uid="uid://dtn1vmauqauex" path="res://scenes/environment/landing.tscn" id="7_yftsl"]
 
 [sub_resource type="Gradient" id="Gradient_70gw8"]
 offsets = PackedFloat32Array(0.297101, 1)
@@ -347,5 +348,8 @@ transform = Transform3D(0.590845, 0.245102, 0.768653, 0.801953, -0.0743056, -0.5
 
 [node name="Hedgehog4" parent="Hedgehogstacle" instance=ExtResource("6_v2pta")]
 transform = Transform3D(0.849794, 0.227718, 0.475388, 0.369016, 0.386996, -0.845022, -0.3764, 0.89352, 0.244836, 6.17815, -3.61711, -32.7831)
+
+[node name="Landing" parent="." instance=ExtResource("7_yftsl")]
+transform = Transform3D(0.785382, 0, -0.619012, 0, 1, 0, 0.619012, 0, 0.785382, 20.698, -14, -63.5474)
 
 [editable path="crystal_cave"]
