@@ -103,63 +103,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_1u8xl")
 [node name="Icosphere_001" parent="Frog/frog/frog" index="1"]
 surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
 
-[node name="Icosphere_002" parent="Frog/frog/frog" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_003" parent="Frog/frog/frog" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_004" parent="Frog/frog/frog" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_005" parent="Frog/frog/frog" index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_006" parent="Frog/frog/frog" index="6"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_007" parent="Frog/frog/frog" index="7"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_008" parent="Frog/frog/frog" index="8"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_009" parent="Frog/frog/frog" index="9"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_010" parent="Frog/frog/frog" index="10"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_011" parent="Frog/frog/frog" index="11"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_012" parent="Frog/frog/frog" index="12"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_013" parent="Frog/frog/frog" index="13"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_014" parent="Frog/frog/frog" index="14"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_015" parent="Frog/frog/frog" index="15"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_016" parent="Frog/frog/frog" index="16"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_017" parent="Frog/frog/frog" index="17"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_018" parent="Frog/frog/frog" index="18"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_020" parent="Frog/frog/frog" index="19"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
-[node name="Icosphere_019" parent="Frog/frog/frog" index="20"]
-surface_material_override/0 = SubResource("StandardMaterial3D_h4fmw")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Frog"]
 shape = SubResource("BoxShape3D_nyk43")
 
