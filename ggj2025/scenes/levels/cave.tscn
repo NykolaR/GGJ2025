@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=34 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
+[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_pwkrs"]
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
 [ext_resource type="AudioStream" uid="uid://b5xb0circeqev" path="res://assets/audio/cave_ambience.wav" id="3_sqngc"]
 [ext_resource type="PackedScene" uid="uid://dx0j0tqumcwy4" path="res://scenes/environment/obelisk.tscn" id="4_qmj5m"]
@@ -167,6 +168,7 @@ fog_light_color = Color(0.294118, 0.356863, 0.670588, 1)
 fog_density = 0.005
 
 [node name="Cave" type="Node3D"]
+script = ExtResource("1_pwkrs")
 
 [node name="crystal_cave" parent="." instance=ExtResource("1_1lcju")]
 

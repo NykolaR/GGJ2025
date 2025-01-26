@@ -32,3 +32,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pa0g8")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 14)
 
 [node name="Cave" parent="." instance=ExtResource("2_fym4n")]
+
+[node name="UI" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[editable path="Cave"]
+[editable path="Cave/crystal_cave"]

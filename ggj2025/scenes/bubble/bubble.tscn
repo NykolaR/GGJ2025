@@ -211,6 +211,11 @@ light_cull_mask = 4294967293
 shadow_enabled = true
 shadow_caster_mask = 4294967293
 
+[node name="FrogTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="sleeping_state_changed" from="Frog" to="." method="_on_frog_sleeping_state_changed"]
 [connection signal="animation_finished" from="Frog/frog/frog-fix-2/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="FrogTimer" to="." method="_on_frog_timer_timeout"]
 
 [editable path="Frog/frog/frog-fix-2"]
