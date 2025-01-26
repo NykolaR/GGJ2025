@@ -83,14 +83,6 @@ theme_override_font_sizes/font_size = 32
 text = "1"
 horizontal_alignment = 1
 
-[node name="LaunchMult" type="Label" parent="CanvasLayer/ScoreDisplay"]
-visible = false
-layout_mode = 2
-theme_override_constants/outline_size = 12
-theme_override_font_sizes/font_size = 32
-text = "FROG LAUNCH DISTANCE MULTIPLIER"
-horizontal_alignment = 1
-
 [node name="LaunchMultValue" type="Label" parent="CanvasLayer/ScoreDisplay"]
 visible = false
 layout_mode = 2
@@ -105,6 +97,14 @@ layout_mode = 2
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 32
 text = "FINAL SCORE"
+horizontal_alignment = 1
+
+[node name="LaunchMult" type="Label" parent="CanvasLayer/ScoreDisplay"]
+visible = false
+layout_mode = 2
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 32
+text = "FROG LAUNCH DISTANCE MULTIPLIER"
 horizontal_alignment = 1
 
 [node name="FinalScoreValue" type="Label" parent="CanvasLayer/ScoreDisplay"]

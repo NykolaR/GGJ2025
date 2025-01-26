@@ -82,6 +82,14 @@ func _physics_process(delta: float) -> void:
 	animation.advance(delta * 3.0)
 
 
+func _process(delta: float) -> void:
+	if bubble_control:
+		var speed: Vector2 = Input.get_vector("camera_left", "camera_right", "camera_up", "camera_down") * delta * 10.0
+		camera_y.rotate_y(-speed.x)
+		camera_x.rotate_x(-speed.y)
+		camera_x.rotation_degrees.x = clampf(camera_x.rotation_degrees.x, -87, 87)
+
+
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var i: int = 0
 	while i < state.get_contact_count():
