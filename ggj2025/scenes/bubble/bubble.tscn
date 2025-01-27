@@ -1,16 +1,21 @@
-[gd_scene load_steps=39 format=4 uid="uid://dqnkqd4qp7f7m"]
+[gd_scene load_steps=45 format=4 uid="uid://dqnkqd4qp7f7m"]
 
 [ext_resource type="Script" uid="uid://bl7ywij8kmhyv" path="res://scenes/bubble/bubble.gd" id="1_v753p"]
 [ext_resource type="Shader" uid="uid://dg40tftgivbd4" path="res://assets/shaders/bubble.gdshader" id="2_wsujy"]
 [ext_resource type="PackedScene" uid="uid://c25b6tq0tjiv7" path="res://assets/models/frog-fix-2.gltf" id="3_igr3j"]
 [ext_resource type="PackedScene" uid="uid://y1y4u10dycn5" path="res://assets/models/bindle.gltf" id="4_8a5yt"]
-[ext_resource type="AudioStream" uid="uid://mjistdm5uod2" path="res://assets/audio/bubble_movement_loop.wav" id="4_igr3j"]
 [ext_resource type="AudioStream" uid="uid://dtgl6xqr5vu6q" path="res://assets/audio/frog_goes_splat.wav" id="4_kp1mu"]
 [ext_resource type="AudioStream" uid="uid://d4b651ajm76yk" path="res://assets/audio/bubble_pop_1.wav" id="5_8a5yt"]
 [ext_resource type="PackedScene" uid="uid://dwebriy1w41t4" path="res://assets/models/cricket-jam.gltf" id="5_plfqy"]
 [ext_resource type="AudioStream" uid="uid://bkea32igk2su2" path="res://assets/audio/bubble_pop_2.wav" id="6_plfqy"]
 [ext_resource type="AudioStream" uid="uid://cf387aqccpqh8" path="res://assets/audio/bubble_pop_3.wav" id="7_f83y5"]
-[ext_resource type="AudioStream" uid="uid://sxn8ilkipkh8" path="res://assets/audio/frog_music_v2.ogg" id="10_f83y5"]
+[ext_resource type="AudioStream" uid="uid://floijvu25cql" path="res://assets/audio/Movements/frog_move_1.wav" id="7_fpq3n"]
+[ext_resource type="AudioStream" uid="uid://cpdiocp7ouf7h" path="res://assets/audio/Movements/frog_move_2.wav" id="8_wwciu"]
+[ext_resource type="AudioStream" uid="uid://cngcf5443ue4d" path="res://assets/audio/Movements/frog_move_3.wav" id="9_dyrcj"]
+[ext_resource type="AudioStream" uid="uid://dwxqi5gj46nv3" path="res://assets/audio/Movements/frog_move_4.wav" id="10_cp146"]
+[ext_resource type="AudioStream" uid="uid://dx5nrat00ralh" path="res://assets/audio/frog_music_v3.ogg" id="11_kp1mu"]
+[ext_resource type="AudioStream" uid="uid://3hvxrs15tw22" path="res://assets/audio/Movements/frog_move_5.wav" id="11_xjkjv"]
+[ext_resource type="AudioStream" uid="uid://4j6a6qpkamg6" path="res://assets/audio/Movements/frog_move_6.wav" id="12_uqkli"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ya7gu"]
 radius = 0.2
@@ -145,6 +150,16 @@ height = 0.03
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bynny"]
 albedo_color = Color(0.341176, 0.160784, 0.294118, 1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_4tbs6"]
+random_pitch = 1.1
+streams_count = 6
+stream_0/stream = ExtResource("7_fpq3n")
+stream_1/stream = ExtResource("8_wwciu")
+stream_2/stream = ExtResource("9_dyrcj")
+stream_3/stream = ExtResource("10_cp146")
+stream_4/stream = ExtResource("11_xjkjv")
+stream_5/stream = ExtResource("12_uqkli")
+
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_kp1mu"]
 streams_count = 3
 stream_0/stream = ExtResource("5_8a5yt")
@@ -220,9 +235,23 @@ transform = Transform3D(8.60819e-07, 0, 2.38015, 0, 1, 0, -4.42109, 0, 4.63432e-
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
 
+[node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature" index="0"]
+bones/0/rotation = Quaternion(0.286139, -0.286, -0.646818, 0.646494)
+bones/1/rotation = Quaternion(-0.99124, -0.000246581, 3.6728e-05, 0.132074)
+bones/2/rotation = Quaternion(0.234041, 0.233928, 0.667438, 0.667105)
+bones/3/rotation = Quaternion(-0.993891, 0.000247273, -3.12297e-05, 0.110363)
+
 [node name="Icosphere_003" parent="Frog/frog/frog-fix-2/Armature/Skeleton3D" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_plfqy")
+
+[node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature_001" index="0"]
+bones/0/rotation = Quaternion(0.688111, 0.688063, -0.163693, -0.162102)
+bones/1/rotation = Quaternion(-0.989501, 0.000651446, -9.26817e-05, 0.144525)
+bones/2/rotation = Quaternion(0.764042, 0.00224684, 0.000856781, 0.645161)
+bones/3/rotation = Quaternion(0.696361, -0.698399, 0.116704, -0.117045)
+bones/4/rotation = Quaternion(-0.99025, 0.00354542, 9.16488e-05, 0.139259)
+bones/5/rotation = Quaternion(0.684335, -0.00201421, -0.000962242, 0.729164)
 
 [node name="Icosphere_002" parent="Frog/frog/frog-fix-2/Armature_001/Skeleton3D" index="0"]
 layers = 2
@@ -290,11 +319,9 @@ contact_monitor = true
 max_contacts_reported = 1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CricketJam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CylinderShape3D_plfqy")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="CricketJam"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_f83y5")
 
 [node name="cricket-jam" parent="CricketJam" instance=ExtResource("5_plfqy")]
@@ -312,7 +339,8 @@ mesh = SubResource("CylinderMesh_plfqy")
 surface_material_override/0 = SubResource("StandardMaterial3D_bynny")
 
 [node name="Swim" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_igr3j")
+stream = SubResource("AudioStreamRandomizer_4tbs6")
+bus = &"Swim Reverb"
 
 [node name="Pop" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_kp1mu")
@@ -328,7 +356,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_f83y5")
+stream = ExtResource("11_kp1mu")
 autoplay = true
 
 [connection signal="body_entered" from="Frog" to="." method="_on_frog_body_entered"]
