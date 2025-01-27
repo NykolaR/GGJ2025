@@ -340,7 +340,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_bynny")
 
 [node name="Swim" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_4tbs6")
-bus = &"Swim Reverb"
 
 [node name="Pop" type="AudioStreamPlayer3D" parent="."]
 stream = SubResource("AudioStreamRandomizer_kp1mu")

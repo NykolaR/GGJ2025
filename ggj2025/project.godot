@@ -16,6 +16,10 @@ run/main_scene="uid://byywi4qop4q3q"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://scenes/globals.gd"
+
 [input]
 
 tap_up={

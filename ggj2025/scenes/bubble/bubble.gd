@@ -34,6 +34,7 @@ signal tap_inputted(direction: Vector3)
 signal restart
 
 func _ready() -> void:
+	$Music.seek(Globals.audioPosition)
 	shader = $MeshInstance3D.material_override
 	if mode == MODE.TAP:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -150,6 +151,7 @@ func pop() -> void:
 	$Pop.play()
 	frog_popped.emit(frog)
 	$FrogTimer.start()
+	Globals.audioPosition = $Music.get_playback_position()
 	$Music.stop()
 
 

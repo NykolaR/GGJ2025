@@ -8,7 +8,7 @@ func _ready():
 	#Second the property of said object to affect  
 	#Third is what value you want it to end on.  
 	#Fourth is the time taken to do so.
-	tween.tween_property($CanvasLayer/ColorRect,"modulate", Color(0,0,0,1), 2)
+	tween.tween_property($CanvasLayer/ColorRect,"modulate", Color(0,0,0,1), 1)
 	tween.stop()
 
 func _on_button_pressed() -> void:
