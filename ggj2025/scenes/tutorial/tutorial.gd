@@ -56,6 +56,7 @@ func _on_bubble_tap_inputted(direction: Vector3) -> void:
 	
 func _on_bubble_restart() -> void:
 	states["Restart (R / Select)"] = true
+	Globals.audioPosition = $Bubble/Music.get_playback_position()
 	get_tree().reload_current_scene()
 
 func _on_bubble_frog_popped(_a) -> void:
