@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhu22u8bxpndt"]
+[gd_scene load_steps=12 format=3 uid="uid://dhu22u8bxpndt"]
 
 [ext_resource type="PackedScene" uid="uid://dqnkqd4qp7f7m" path="res://scenes/bubble/bubble.tscn" id="1_kfclf"]
 [ext_resource type="Script" uid="uid://ddpty0au6n23v" path="res://scenes/debug/debug.gd" id="1_pa0g8"]
@@ -22,6 +22,9 @@ albedo_texture = SubResource("NoiseTexture2D_pa0g8")
 uv1_scale = Vector3(0.06, 0.06, 0.06)
 uv1_triplanar = true
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oa6p7"]
+size = Vector3(20, 20, 5)
+
 [sub_resource type="Theme" id="Theme_hxnlu"]
 default_font = ExtResource("4_oa6p7")
 default_font_size = 24
@@ -37,8 +40,19 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pa0g8")
 
 [node name="Bubble" parent="." instance=ExtResource("1_kfclf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 14)
+mode = 0
+mult_dist = 40.0
+tap_intensity = 400.0
+intensity = Vector3(10, 10, 0.01)
+camera_sens_mult = 0.01
 
 [node name="Cave" parent="." instance=ExtResource("2_fym4n")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Cave/crystal_cave/MeshInstance3D" index="0"]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cave/crystal_cave/MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_oa6p7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

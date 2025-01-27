@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=35 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_pwkrs"]
@@ -29,6 +29,9 @@ albedo_texture = SubResource("NoiseTexture2D_fym4n")
 uv1_scale = Vector3(0.06, 0.06, 0.06)
 uv1_triplanar = true
 texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_pwkrs"]
+size = Vector3(20, 20, 5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sqngc"]
 size = Vector2(18, 40)
@@ -177,6 +180,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qmj5m")
 
 [node name="StaticBody3D" parent="crystal_cave/Base" index="0"]
 collision_layer = 3
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="crystal_cave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.2987, -7.93761, -70.0116)
+mesh = SubResource("BoxMesh_pwkrs")
+surface_material_override/0 = SubResource("StandardMaterial3D_qmj5m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.02062, 3.07978)

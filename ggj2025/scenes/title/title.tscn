@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://byywi4qop4q3q"]
+[gd_scene load_steps=45 format=4 uid="uid://byywi4qop4q3q"]
 
 [ext_resource type="FontFile" uid="uid://dksn3jfeg2fc3" path="res://assets/fonts/HappyMonkey-Regular.ttf" id="1_5vtrw"]
 [ext_resource type="Script" uid="uid://d18ckg36ehpxm" path="res://scenes/title/title.gd" id="1_g4gru"]
@@ -6,6 +6,7 @@
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="3_7hvf5"]
 [ext_resource type="Shader" uid="uid://dg40tftgivbd4" path="res://assets/shaders/bubble.gdshader" id="4_yjwoi"]
 [ext_resource type="PackedScene" uid="uid://c25b6tq0tjiv7" path="res://assets/models/frog-fix-2.gltf" id="5_g4gru"]
+[ext_resource type="AudioStream" uid="uid://bmjmlg0balwvv" path="res://assets/audio/tutorial_ambiance.ogg" id="7_7s5iw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjwoi"]
 albedo_color = Color(0.235294, 0.639216, 0.439216, 1)
@@ -451,6 +452,10 @@ shape = SubResource("BoxShape3D_rtgr4")
 process_mode = 3
 remote_path = NodePath("../../Camera")
 update_rotation = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_7s5iw")
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]

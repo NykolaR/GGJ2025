@@ -15,6 +15,7 @@ enum MODE {TAP, PUSH}
 @onready var ant: Node3D = $Camera/CameraY/CameraX/BigAnt/Ant as Node3D
 @onready var frog_visual: Node3D = $Frog/frog as Node3D
 @onready var frog: RigidBody3D = $Frog as RigidBody3D
+@onready var music: AudioStreamPlayer = $Music as AudioStreamPlayer
 
 @onready var cooldown: Timer = $Timer as Timer
 
@@ -36,10 +37,10 @@ signal tap_inputted(direction: Vector3)
 signal restart
 
 func _ready() -> void:
-	$Music.seek(Globals.audioPosition)
-	if $Music.get_playback_position() > 0.0:
-		$Music.volume_db = -80.0
-		fade_in.tween_property($Music,"volume_db", 0, 1)
+	music.seek(Globals.audioPosition)
+	if music.get_playback_position() > 0.0:
+		music.volume_db = -80.0
+		fade_in.tween_property(music,"volume_db", 0, 1)
 		
 	shader = $MeshInstance3D.material_override
 	if mode == MODE.TAP:
@@ -50,8 +51,8 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
-		if $Music.playing:
-			Globals.set_audio_position($Music.get_playback_position())
+		if music.playing:
+			Globals.set_audio_position(music.get_playback_position())
 		restart.emit()
 		
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -159,8 +160,8 @@ func pop() -> void:
 	$Pop.play()
 	frog_popped.emit(frog)
 	$FrogTimer.start()
-	Globals.set_audio_position($Music.get_playback_position())
-	$Music.stop()
+	Globals.set_audio_position(music.get_playback_position())
+	music.stop()
 
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
