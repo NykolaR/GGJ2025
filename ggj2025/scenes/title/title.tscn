@@ -8,147 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://c25b6tq0tjiv7" path="res://assets/models/frog-fix-2.gltf" id="5_g4gru"]
 [ext_resource type="AudioStream" uid="uid://bmjmlg0balwvv" path="res://assets/audio/tutorial_ambiance.ogg" id="7_7s5iw"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yjwoi"]
-albedo_color = Color(0.235294, 0.639216, 0.439216, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g4gru"]
-albedo_color = Color(1, 0.709804, 0.709804, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s5iw"]
-albedo_color = Color(0.921569, 0.337255, 0.294118, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k35rw"]
-albedo_color = Color(0.890196, 0.411765, 0.337255, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jryob"]
-albedo_color = Color(1, 1, 0.921569, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnyg8"]
-albedo_color = Color(0.301961, 0.65098, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yl2o"]
-albedo_color = Color(0.811765, 1, 0.439216, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_awdk6"]
-size = Vector2(18, 40)
-subdivide_width = 10
-subdivide_depth = 10
-
-[sub_resource type="Gradient" id="Gradient_7uqqr"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_g4gru"]
-gradient = SubResource("Gradient_7uqqr")
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7s5iw"]
-gradient = SubResource("Gradient_7uqqr")
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_k35rw"]
-gradient = SubResource("Gradient_7uqqr")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_784tc"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jryob"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_784tc")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rtgr4"]
-seed = 255
-frequency = 0.005
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dnyg8"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_rtgr4")
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4yl2o"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_784tc")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_agu86"]
-seed = 230
-frequency = 0.0463
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_awdk6"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_agu86")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bjs8b"]
-seed = 135
-frequency = 0.013
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7uqqr"]
-seamless = true
-as_normal_map = true
-noise = SubResource("FastNoiseLite_bjs8b")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dawno"]
-render_priority = 0
-shader = ExtResource("3_7hvf5")
-shader_parameter/sync_time = null
-shader_parameter/wave_speed = 0.05
-shader_parameter/caustic_speed = 0.01
-shader_parameter/edge_fade_power = 1.0
-shader_parameter/transmittence = 0.05
-shader_parameter/h_dist_trans_weight = 3.0
-shader_parameter/transmit_color = null
-shader_parameter/depth_fade = 0.3
-shader_parameter/depth_fade_distance = 5.0
-shader_parameter/surface_albedo = Color(0.4, 1, 0.890196, 1)
-shader_parameter/surface_bottom = Color(0.301961, 0.65098, 1, 1)
-shader_parameter/opacity = 0.4
-shader_parameter/opacity_floor = 0.1
-shader_parameter/opacity_ceiling = 0.8
-shader_parameter/roughness = 0.4
-shader_parameter/height_scale = 1.0
-shader_parameter/amplitude1 = 0.0
-shader_parameter/amplitude2 = 0.2
-shader_parameter/vertex_noise_big = SubResource("NoiseTexture2D_awdk6")
-shader_parameter/vertex_noise_big2 = SubResource("NoiseTexture2D_7uqqr")
-shader_parameter/v_noise_tile = 200
-shader_parameter/normal_noise = SubResource("NoiseTexture2D_jryob")
-shader_parameter/normal_noise2 = SubResource("NoiseTexture2D_dnyg8")
-shader_parameter/normal_noise_size = 5.12
-shader_parameter/normal_noise_speed = 0.005
-shader_parameter/v_normal_scale = 1.0
-shader_parameter/normal_map_w = 256
-shader_parameter/wobble_power = 0.01
-shader_parameter/under_wobble_noise = SubResource("NoiseTexture2D_4yl2o")
-shader_parameter/sky_color = null
-shader_parameter/foam_color = null
-shader_parameter/foam = SubResource("GradientTexture1D_g4gru")
-shader_parameter/foam_mask = SubResource("GradientTexture1D_7s5iw")
-shader_parameter/foam_mask_size = null
-shader_parameter/foam_mask_offset = Vector2(0, 0)
-shader_parameter/foam_wobble = 0.01
-shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_k35rw")
-shader_parameter/foam_wobble_size = 10.0
-shader_parameter/high_color = Color(0.4, 1, 0.890196, 1)
-shader_parameter/low_color = Color(0.301961, 0.65098, 1, 1)
-shader_parameter/wave_color_range = 2.0
-shader_parameter/enable_fake_lighting = false
-shader_parameter/shine_strength = 0.17
-shader_parameter/shine_shininess = 18.0
-shader_parameter/shadow = 0.72
-shader_parameter/shadow_width = 0.18
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.199
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.067
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_xraam"]
-size = Vector3(13.95, 1, 45.11)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_1cwff"]
-size = Vector3(13.95, 4.26611, 50.0061)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hgyff"]
-size = Vector3(5.235, 0.663086, 13.3301)
-
 [sub_resource type="Environment" id="Environment_ucj5f"]
 background_mode = 1
 background_color = Color(0.278431, 0.231373, 0.470588, 1)
@@ -235,6 +94,147 @@ albedo_color = Color(0.235294, 0.639216, 0.439216, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_rtgr4"]
 size = Vector3(0.195, 0.07, 0.335)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7s5iw"]
+albedo_color = Color(0.235294, 0.639216, 0.439216, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k35rw"]
+albedo_color = Color(1, 0.709804, 0.709804, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jryob"]
+albedo_color = Color(0.921569, 0.337255, 0.294118, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dnyg8"]
+albedo_color = Color(0.890196, 0.411765, 0.337255, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yl2o"]
+albedo_color = Color(1, 1, 0.921569, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rtgr4"]
+albedo_color = Color(0.301961, 0.65098, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_agu86"]
+albedo_color = Color(0.811765, 1, 0.439216, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bjs8b"]
+size = Vector2(18, 40)
+subdivide_width = 10
+subdivide_depth = 10
+
+[sub_resource type="Gradient" id="Gradient_dawno"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r23bs"]
+gradient = SubResource("Gradient_dawno")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pq3l0"]
+gradient = SubResource("Gradient_dawno")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g7eoy"]
+gradient = SubResource("Gradient_dawno")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xraam"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ha56g"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_xraam")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1cwff"]
+seed = 255
+frequency = 0.005
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4nriy"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_1cwff")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hsofu"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_xraam")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hgyff"]
+seed = 230
+frequency = 0.0463
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sr6ah"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_hgyff")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ucj5f"]
+seed = 135
+frequency = 0.013
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ks8yg"]
+seamless = true
+as_normal_map = true
+noise = SubResource("FastNoiseLite_ucj5f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bqdq2"]
+render_priority = 0
+shader = ExtResource("3_7hvf5")
+shader_parameter/sync_time = null
+shader_parameter/wave_speed = 0.05
+shader_parameter/caustic_speed = 0.01
+shader_parameter/edge_fade_power = 1.0
+shader_parameter/transmittence = 0.05
+shader_parameter/h_dist_trans_weight = 3.0
+shader_parameter/transmit_color = null
+shader_parameter/depth_fade = 0.3
+shader_parameter/depth_fade_distance = 5.0
+shader_parameter/surface_albedo = Color(0.4, 1, 0.890196, 1)
+shader_parameter/surface_bottom = Color(0.301961, 0.65098, 1, 1)
+shader_parameter/opacity = 0.4
+shader_parameter/opacity_floor = 0.1
+shader_parameter/opacity_ceiling = 0.8
+shader_parameter/roughness = 0.4
+shader_parameter/height_scale = 1.0
+shader_parameter/amplitude1 = 0.0
+shader_parameter/amplitude2 = 0.2
+shader_parameter/vertex_noise_big = SubResource("NoiseTexture2D_sr6ah")
+shader_parameter/vertex_noise_big2 = SubResource("NoiseTexture2D_ks8yg")
+shader_parameter/v_noise_tile = 200
+shader_parameter/normal_noise = SubResource("NoiseTexture2D_ha56g")
+shader_parameter/normal_noise2 = SubResource("NoiseTexture2D_4nriy")
+shader_parameter/normal_noise_size = 5.12
+shader_parameter/normal_noise_speed = 0.005
+shader_parameter/v_normal_scale = 1.0
+shader_parameter/normal_map_w = 256
+shader_parameter/wobble_power = 0.01
+shader_parameter/under_wobble_noise = SubResource("NoiseTexture2D_hsofu")
+shader_parameter/sky_color = null
+shader_parameter/foam_color = null
+shader_parameter/foam = SubResource("GradientTexture1D_r23bs")
+shader_parameter/foam_mask = SubResource("GradientTexture1D_pq3l0")
+shader_parameter/foam_mask_size = null
+shader_parameter/foam_mask_offset = Vector2(0, 0)
+shader_parameter/foam_wobble = 0.01
+shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_g7eoy")
+shader_parameter/foam_wobble_size = 10.0
+shader_parameter/high_color = Color(0.4, 1, 0.890196, 1)
+shader_parameter/low_color = Color(0.301961, 0.65098, 1, 1)
+shader_parameter/wave_color_range = 2.0
+shader_parameter/enable_fake_lighting = false
+shader_parameter/shine_strength = 0.17
+shader_parameter/shine_shininess = 18.0
+shader_parameter/shadow = 0.72
+shader_parameter/shadow_width = 0.18
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.199
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.067
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wfckv"]
+size = Vector3(13.95, 1, 45.11)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qp135"]
+size = Vector3(13.95, 4.26611, 50.0061)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qb06g"]
+size = Vector3(5.235, 0.663086, 13.3301)
+
 [node name="Title" type="Node3D"]
 script = ExtResource("1_g4gru")
 
@@ -289,101 +289,6 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="lilypad-village" parent="." instance=ExtResource("2_gl121")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68137, 0, -0.861088)
-
-[node name="Cylinder" parent="lilypad-village" index="0"]
-layers = 3
-surface_material_override/0 = SubResource("StandardMaterial3D_yjwoi")
-
-[node name="StaticBody3D" parent="lilypad-village/Cylinder" index="0"]
-collision_layer = 3
-
-[node name="Cube" parent="lilypad-village" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_g4gru")
-
-[node name="StaticBody3D" parent="lilypad-village/Cube" index="0"]
-collision_layer = 3
-
-[node name="Cylinder_001" parent="lilypad-village" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_7s5iw")
-
-[node name="StaticBody3D" parent="lilypad-village/Cylinder_001" index="0"]
-collision_layer = 3
-
-[node name="Cylinder_002" parent="lilypad-village" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_k35rw")
-
-[node name="StaticBody3D" parent="lilypad-village/Cylinder_002" index="0"]
-collision_layer = 3
-
-[node name="Cube_001" parent="lilypad-village" index="4"]
-surface_material_override/0 = SubResource("StandardMaterial3D_jryob")
-
-[node name="StaticBody3D" parent="lilypad-village/Cube_001" index="0"]
-collision_layer = 3
-
-[node name="Cylinder_003" parent="lilypad-village" index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_7s5iw")
-
-[node name="StaticBody3D" parent="lilypad-village/Cylinder_003" index="0"]
-collision_layer = 3
-
-[node name="Cube_002" parent="lilypad-village" index="6"]
-surface_material_override/0 = SubResource("StandardMaterial3D_dnyg8")
-
-[node name="StaticBody3D" parent="lilypad-village/Cube_002" index="0"]
-collision_layer = 3
-
-[node name="Icosphere_002" parent="lilypad-village" index="7"]
-visible = false
-
-[node name="Cylinder_004" parent="lilypad-village" index="8"]
-surface_material_override/0 = SubResource("StandardMaterial3D_4yl2o")
-
-[node name="Cylinder_005" parent="lilypad-village/Cylinder_004" index="0"]
-visible = false
-
-[node name="StaticBody3D" parent="lilypad-village/Cylinder_004" index="1"]
-collision_layer = 3
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="lilypad-village"]
-transform = Transform3D(0.599315, -3.20563e-09, -0.116316, 2.07421e-09, 1, -3.34486e-10, 0.527216, -2.90269e-10, 0.132223, 0.00767553, 2.30378, -0.0386686)
-mesh = SubResource("PlaneMesh_awdk6")
-skeleton = NodePath("../../CanvasLayer")
-surface_material_override/0 = SubResource("ShaderMaterial_dawno")
-
-[node name="Area3D" type="Area3D" parent="lilypad-village/MeshInstance3D2"]
-collision_layer = 4
-collision_mask = 128
-gravity_space_override = 3
-gravity_point_center = Vector3(0, 1, 0)
-gravity_direction = Vector3(0, 1, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="lilypad-village/MeshInstance3D2/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.863072, 11.4914)
-shape = SubResource("BoxShape3D_xraam")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="lilypad-village/MeshInstance3D2/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.49613, 13.6029)
-shape = SubResource("BoxShape3D_1cwff")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="lilypad-village/MeshInstance3D2/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.694615, -13.5686)
-shape = SubResource("BoxShape3D_hgyff")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="lilypad-village"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221773, 3.78344, -5.31447)
-light_color = Color(1, 1, 0.392157, 1)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="lilypad-village"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80576, 3.78344, -4.58219)
-light_color = Color(1, 1, 0.392157, 1)
-
-[node name="OmniLight3D3" type="OmniLight3D" parent="lilypad-village"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.34355, 3.78344, -1.4822)
-light_color = Color(1, 1, 0.392157, 1)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -423,23 +328,9 @@ transform = Transform3D(8.60819e-07, 0, 2.38015, 0, 1, 0, -4.42109, 0, 4.63432e-
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_784tc")
 
-[node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature" index="0"]
-bones/0/rotation = Quaternion(0.286139, -0.286, -0.646818, 0.646494)
-bones/1/rotation = Quaternion(-0.99124, -0.000246581, 3.6728e-05, 0.132074)
-bones/2/rotation = Quaternion(0.234041, 0.233928, 0.667438, 0.667105)
-bones/3/rotation = Quaternion(-0.993891, 0.000247273, -3.12297e-05, 0.110363)
-
 [node name="Icosphere_003" parent="Frog/frog/frog-fix-2/Armature/Skeleton3D" index="0"]
 layers = 2
 surface_material_override/0 = SubResource("StandardMaterial3D_784tc")
-
-[node name="Skeleton3D" parent="Frog/frog/frog-fix-2/Armature_001" index="0"]
-bones/0/rotation = Quaternion(0.688111, 0.688063, -0.163693, -0.162102)
-bones/1/rotation = Quaternion(-0.989501, 0.000651446, -9.26817e-05, 0.144525)
-bones/2/rotation = Quaternion(0.764042, 0.00224684, 0.000856781, 0.645161)
-bones/3/rotation = Quaternion(0.696361, -0.698399, 0.116704, -0.117045)
-bones/4/rotation = Quaternion(-0.99025, 0.00354542, 9.16488e-05, 0.139259)
-bones/5/rotation = Quaternion(0.684335, -0.00201421, -0.000962242, 0.729164)
 
 [node name="Icosphere_002" parent="Frog/frog/frog-fix-2/Armature_001/Skeleton3D" index="0"]
 layers = 2
@@ -457,9 +348,104 @@ update_rotation = false
 stream = ExtResource("7_7s5iw")
 autoplay = true
 
+[node name="lilypad-village" parent="." instance=ExtResource("2_gl121")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.68137, 0, -0.861088)
+
+[node name="Cylinder" parent="lilypad-village" index="0"]
+layers = 3
+surface_material_override/0 = SubResource("StandardMaterial3D_7s5iw")
+
+[node name="StaticBody3D" parent="lilypad-village/Cylinder" index="0"]
+collision_layer = 3
+
+[node name="Cube" parent="lilypad-village" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_k35rw")
+
+[node name="StaticBody3D" parent="lilypad-village/Cube" index="0"]
+collision_layer = 3
+
+[node name="Cylinder_001" parent="lilypad-village" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jryob")
+
+[node name="StaticBody3D" parent="lilypad-village/Cylinder_001" index="0"]
+collision_layer = 3
+
+[node name="Cylinder_002" parent="lilypad-village" index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dnyg8")
+
+[node name="StaticBody3D" parent="lilypad-village/Cylinder_002" index="0"]
+collision_layer = 3
+
+[node name="Cube_001" parent="lilypad-village" index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_4yl2o")
+
+[node name="StaticBody3D" parent="lilypad-village/Cube_001" index="0"]
+collision_layer = 3
+
+[node name="Cylinder_003" parent="lilypad-village" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_jryob")
+
+[node name="StaticBody3D" parent="lilypad-village/Cylinder_003" index="0"]
+collision_layer = 3
+
+[node name="Cube_002" parent="lilypad-village" index="6"]
+surface_material_override/0 = SubResource("StandardMaterial3D_rtgr4")
+
+[node name="StaticBody3D" parent="lilypad-village/Cube_002" index="0"]
+collision_layer = 3
+
+[node name="Icosphere_002" parent="lilypad-village" index="7"]
+visible = false
+
+[node name="Cylinder_004" parent="lilypad-village" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_agu86")
+
+[node name="Cylinder_005" parent="lilypad-village/Cylinder_004" index="0"]
+visible = false
+
+[node name="StaticBody3D" parent="lilypad-village/Cylinder_004" index="1"]
+collision_layer = 3
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="lilypad-village"]
+transform = Transform3D(0.599315, -3.20563e-09, -0.116316, 2.07421e-09, 1, -3.34486e-10, 0.527216, -2.90269e-10, 0.132223, 0.00767553, 2.30378, -0.0386686)
+mesh = SubResource("PlaneMesh_bjs8b")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_bqdq2")
+
+[node name="Area3D" type="Area3D" parent="lilypad-village/MeshInstance3D2"]
+collision_layer = 4
+collision_mask = 128
+gravity_space_override = 3
+gravity_point_center = Vector3(0, 1, 0)
+gravity_direction = Vector3(0, 1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="lilypad-village/MeshInstance3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.863072, 11.4914)
+shape = SubResource("BoxShape3D_wfckv")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="lilypad-village/MeshInstance3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.49613, 13.6029)
+shape = SubResource("BoxShape3D_qp135")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="lilypad-village/MeshInstance3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.694615, -13.5686)
+shape = SubResource("BoxShape3D_qb06g")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="lilypad-village"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.221773, 3.78344, -5.31447)
+light_color = Color(1, 1, 0.392157, 1)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="lilypad-village"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.80576, 3.78344, -4.58219)
+light_color = Color(1, 1, 0.392157, 1)
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="lilypad-village"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.34355, 3.78344, -1.4822)
+light_color = Color(1, 1, 0.392157, 1)
+
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button2" to="." method="_on_button_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button3" to="." method="_on_button_3_pressed"]
 
-[editable path="lilypad-village"]
 [editable path="Frog/frog/frog-fix-2"]
+[editable path="lilypad-village"]

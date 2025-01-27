@@ -38,18 +38,18 @@ subdivide_depth = 10
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_r23bs"]
-gradient = SubResource("Gradient_r23bs")
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_pq3l0"]
-gradient = SubResource("Gradient_r23bs")
-
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_g7eoy"]
+gradient = SubResource("Gradient_r23bs")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ha56g"]
+gradient = SubResource("Gradient_r23bs")
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_4nriy"]
 gradient = SubResource("Gradient_r23bs")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_pq3l0"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ha56g"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hsofu"]
 seamless = true
 as_normal_map = true
 noise = SubResource("FastNoiseLite_pq3l0")
@@ -58,12 +58,12 @@ noise = SubResource("FastNoiseLite_pq3l0")
 seed = 255
 frequency = 0.005
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4nriy"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sr6ah"]
 seamless = true
 as_normal_map = true
 noise = SubResource("FastNoiseLite_g7eoy")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hsofu"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ks8yg"]
 seamless = true
 as_normal_map = true
 noise = SubResource("FastNoiseLite_pq3l0")
@@ -72,7 +72,7 @@ noise = SubResource("FastNoiseLite_pq3l0")
 seed = 230
 frequency = 0.0463
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_sr6ah"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_xjdtc"]
 seamless = true
 as_normal_map = true
 noise = SubResource("FastNoiseLite_ha56g")
@@ -81,7 +81,7 @@ noise = SubResource("FastNoiseLite_ha56g")
 seed = 135
 frequency = 0.013
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ks8yg"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_afypq"]
 seamless = true
 as_normal_map = true
 noise = SubResource("FastNoiseLite_4nriy")
@@ -107,25 +107,25 @@ shader_parameter/roughness = 0.4
 shader_parameter/height_scale = 1.0
 shader_parameter/amplitude1 = 0.0
 shader_parameter/amplitude2 = 0.2
-shader_parameter/vertex_noise_big = SubResource("NoiseTexture2D_sr6ah")
-shader_parameter/vertex_noise_big2 = SubResource("NoiseTexture2D_ks8yg")
+shader_parameter/vertex_noise_big = SubResource("NoiseTexture2D_xjdtc")
+shader_parameter/vertex_noise_big2 = SubResource("NoiseTexture2D_afypq")
 shader_parameter/v_noise_tile = 200
-shader_parameter/normal_noise = SubResource("NoiseTexture2D_ha56g")
-shader_parameter/normal_noise2 = SubResource("NoiseTexture2D_4nriy")
+shader_parameter/normal_noise = SubResource("NoiseTexture2D_hsofu")
+shader_parameter/normal_noise2 = SubResource("NoiseTexture2D_sr6ah")
 shader_parameter/normal_noise_size = 5.12
 shader_parameter/normal_noise_speed = 0.005
 shader_parameter/v_normal_scale = 1.0
 shader_parameter/normal_map_w = 256
 shader_parameter/wobble_power = 0.01
-shader_parameter/under_wobble_noise = SubResource("NoiseTexture2D_hsofu")
+shader_parameter/under_wobble_noise = SubResource("NoiseTexture2D_ks8yg")
 shader_parameter/sky_color = null
 shader_parameter/foam_color = null
-shader_parameter/foam = SubResource("GradientTexture1D_r23bs")
-shader_parameter/foam_mask = SubResource("GradientTexture1D_pq3l0")
+shader_parameter/foam = SubResource("GradientTexture1D_g7eoy")
+shader_parameter/foam_mask = SubResource("GradientTexture1D_ha56g")
 shader_parameter/foam_mask_size = null
 shader_parameter/foam_mask_offset = Vector2(0, 0)
 shader_parameter/foam_wobble = 0.01
-shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_g7eoy")
+shader_parameter/foam_wobble_noise = SubResource("GradientTexture1D_4nriy")
 shader_parameter/foam_wobble_size = 10.0
 shader_parameter/high_color = Color(0.4, 1, 0.890196, 1)
 shader_parameter/low_color = Color(0.301961, 0.65098, 1, 1)
