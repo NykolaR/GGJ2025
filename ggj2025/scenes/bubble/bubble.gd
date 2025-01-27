@@ -108,6 +108,7 @@ func tap_input(_delta: float) -> void:
 		input.x = Input.get_axis("tap_left", "tap_right")
 		input.y = Input.get_axis("tap_down", "tap_up")
 		input.z = Input.get_axis("tap_forward", "tap_backward")
+		swim_audio.play()
 		if not input.is_zero_approx():
 			tap_inputted.emit(input)
 			input = camera_x.to_global(input)
@@ -116,7 +117,7 @@ func tap_input(_delta: float) -> void:
 			apply_central_force(input * tap_intensity)
 			animation.play("Animation")
 			cooldown.start()
-			swim_audio.play()
+			
 
 
 func mouse_input(_delta: float) -> void:

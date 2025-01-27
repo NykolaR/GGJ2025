@@ -1,8 +1,21 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://d1wvn4rpt3qfw"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://d1wvn4rpt3qfw"]
 
 [sub_resource type="AudioEffectLimiter" id="AudioEffectLimiter_j3pel"]
 resource_name = "Limiter"
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+damping = 0.2
+wet = 0.2
+
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectLimiter_j3pel")
 bus/0/effect/0/enabled = true
+bus/1/name = &"Swim Reverb"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_j3pel")
+bus/1/effect/0/enabled = true
