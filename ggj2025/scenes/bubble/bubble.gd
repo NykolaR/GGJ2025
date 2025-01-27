@@ -21,6 +21,8 @@ enum MODE {TAP, PUSH}
 @onready var animation: AnimationPlayer = $"Frog/frog/frog-fix-2/AnimationPlayer" as AnimationPlayer
 @onready var swim_audio: AudioStreamPlayer3D = $Swim as AudioStreamPlayer3D
 
+var fade_in: Tween = create_tween()
+
 var shader: ShaderMaterial
 var bubble_control: bool = true
 var vstack: Array[Vector3] = []
@@ -35,6 +37,10 @@ signal restart
 
 func _ready() -> void:
 	$Music.seek(Globals.audioPosition)
+	if $Music.get_playback_position() > 0.0:
+		$Music.volume_db = -80.0
+		fade_in.tween_property($Music,"volume_db", 0, 1)
+		
 	shader = $MeshInstance3D.material_override
 	if mode == MODE.TAP:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
