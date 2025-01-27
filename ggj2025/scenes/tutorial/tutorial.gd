@@ -56,7 +56,6 @@ func _on_bubble_tap_inputted(direction: Vector3) -> void:
 	
 func _on_bubble_restart() -> void:
 	states["Restart (R / Select)"] = true
-	Globals.audioPosition = $Bubble/Music.get_playback_position()
 	get_tree().reload_current_scene()
 
 func _on_bubble_frog_popped(_a) -> void:
@@ -68,4 +67,5 @@ func _on_bubble_calculate_score(_a) -> void:
 	update_text()
 
 func explore ():
+	Globals.audioPosition = 0.0
 	get_tree().change_scene_to_file("res://scenes/debug/debug.tscn")
