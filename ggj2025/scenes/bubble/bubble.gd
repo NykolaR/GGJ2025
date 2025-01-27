@@ -42,6 +42,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("restart"):
+		restart.emit()
+		
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event.is_action_pressed("mouse_unlock"):
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -52,8 +55,6 @@ func _input(event: InputEvent) -> void:
 			camera_x.rotate_x(-speed.y)
 			camera_x.rotation_degrees.x = clampf(camera_x.rotation_degrees.x, -87, 87)
 		
-		if event.is_action_pressed("restart"):
-			restart.emit()
 			
 	elif Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 		if event.is_action_pressed("mouse_unlock"):

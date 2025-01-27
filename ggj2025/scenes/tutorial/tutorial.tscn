@@ -264,17 +264,17 @@ environment = SubResource("Environment_bmltb")
 offset_right = 571.0
 offset_bottom = 398.0
 theme_override_fonts/normal_font = ExtResource("4_g40di")
+theme_override_font_sizes/normal_font_size = 19
 bbcode_enabled = true
-text = "Move Up (W, D-Up)
-Move Down (S, D-Down)
-Move Left (A, D-Left)
-Move Right (D, D-Right)
-Move Forward (Left Click, R Bumper)
-Move Backward (Right Click, L Button)
-Restart (R, Select)
-Pop (Space, (X) )
-Collect your belongings
-Land"
+text = "Move Up (W / D-Up)
+Move Down (S / D-Down)
+Move Left (A / D-Left)
+Move Right (D / D-Right)
+Move Forward (Left Click / R Bumper)
+Move Backward (Right Click / L Bumper)
+Restart (R / Select)
+Pop (Space / X Button)
+Land and Relax..."
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 modulate = Color(1, 1, 1, 0)
