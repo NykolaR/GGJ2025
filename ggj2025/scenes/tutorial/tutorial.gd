@@ -67,5 +67,5 @@ func _on_bubble_calculate_score(_a) -> void:
 	update_text()
 
 func explore ():
-	Globals.audioPosition = 0.0
+	Globals.set_audio_position(0.0)
 	get_tree().change_scene_to_file("res://scenes/debug/debug.tscn")

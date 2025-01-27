@@ -44,8 +44,9 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("restart"):
+		if $Music.playing:
+			Globals.set_audio_position($Music.get_playback_position())
 		restart.emit()
-		Globals.audioPosition = $Music.get_playback_position()
 		
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event.is_action_pressed("mouse_unlock"):
@@ -152,7 +153,7 @@ func pop() -> void:
 	$Pop.play()
 	frog_popped.emit(frog)
 	$FrogTimer.start()
-	Globals.audioPosition = $Music.get_playback_position()
+	Globals.set_audio_position($Music.get_playback_position())
 	$Music.stop()
 
 
