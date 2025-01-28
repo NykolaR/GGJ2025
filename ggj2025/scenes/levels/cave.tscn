@@ -1,13 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://btxi0ibsi5l4q"]
+[gd_scene load_steps=36 format=3 uid="uid://btxi0ibsi5l4q"]
 
 [ext_resource type="PackedScene" uid="uid://uutgcx5eyg0g" path="res://assets/models/crystal_cave.gltf" id="1_1lcju"]
-[ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_pwkrs"]
+[ext_resource type="Script" uid="uid://bfbsxa10p5u25" path="res://scenes/levels/level.gd" id="1_pwkrs"]
 [ext_resource type="Shader" uid="uid://bsj84wpdeopvn" path="res://assets/shaders/water.gdshader" id="2_70gw8"]
 [ext_resource type="AudioStream" uid="uid://b5xb0circeqev" path="res://assets/audio/cave_ambience.wav" id="3_sqngc"]
 [ext_resource type="PackedScene" uid="uid://dx0j0tqumcwy4" path="res://scenes/environment/obelisk.tscn" id="4_qmj5m"]
 [ext_resource type="PackedScene" uid="uid://cw8d4v0ksxr1u" path="res://scenes/environment/eggplant.tscn" id="5_3xx83"]
 [ext_resource type="PackedScene" uid="uid://boc2firdbna1c" path="res://scenes/environment/hedgehog.tscn" id="6_v2pta"]
 [ext_resource type="PackedScene" uid="uid://dtn1vmauqauex" path="res://scenes/environment/landing.tscn" id="7_yftsl"]
+[ext_resource type="VoxelGIData" uid="uid://c4i1gtopptpqo" path="res://scenes/levels/cave.VoxelGI_data.res" id="9_dve5i"]
 
 [sub_resource type="Gradient" id="Gradient_70gw8"]
 offsets = PackedFloat32Array(0.297101, 1)
@@ -162,13 +163,17 @@ sky_material = SubResource("ProceduralSkyMaterial_yftsl")
 
 [sub_resource type="Environment" id="Environment_pwkrs"]
 background_mode = 2
+background_energy_multiplier = 1.5
 sky = SubResource("Sky_fym4n")
 tonemap_mode = 4
-tonemap_exposure = 2.0
+tonemap_exposure = 2.5
+sdfgi_read_sky_light = false
 glow_enabled = true
-fog_enabled = true
 fog_light_color = Color(0.294118, 0.356863, 0.670588, 1)
 fog_density = 0.005
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.03
+volumetric_fog_albedo = Color(0.294118, 0.356863, 0.670588, 1)
 
 [node name="Cave" type="Node3D"]
 script = ExtResource("1_pwkrs")
@@ -188,6 +193,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qmj5m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.02062, 3.07978)
+transparency = 0.5
+cast_shadow = 0
 mesh = SubResource("PlaneMesh_sqngc")
 surface_material_override/0 = SubResource("ShaderMaterial_mu2na")
 
@@ -361,5 +368,10 @@ transform = Transform3D(0.849794, 0.227718, 0.475388, 0.369016, 0.386996, -0.845
 
 [node name="Landing" parent="." instance=ExtResource("7_yftsl")]
 transform = Transform3D(0.785382, 0, -0.619012, 0, 1, 0, 0.619012, 0, 0.785382, 20.698, -14, -63.5474)
+
+[node name="VoxelGI" type="VoxelGI" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.48016, -6.78345, -23.8922)
+size = Vector3(58.0665, 33.5669, 90.0475)
+data = ExtResource("9_dve5i")
 
 [editable path="crystal_cave"]

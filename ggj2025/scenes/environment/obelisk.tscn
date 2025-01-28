@@ -19,7 +19,7 @@ noise = SubResource("FastNoiseLite_8arqr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ywjx5"]
 transparency = 1
-depth_draw_mode = 1
+cull_mode = 2
 albedo_texture = SubResource("NoiseTexture2D_ywjx5")
 uv1_triplanar = true
 texture_filter = 0
@@ -37,5 +37,14 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ywjx5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("ConcavePolygonShape3D_8arqr")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.183989, 0)
+light_color = Color(1, 0.419608, 0.592157, 1)
+light_indirect_energy = 5.0
+light_bake_mode = 1
+shadow_enabled = true
+distance_fade_enabled = true
+distance_fade_shadow = 20.0
 
 [editable path="obelisk"]

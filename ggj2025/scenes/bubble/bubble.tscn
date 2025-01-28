@@ -346,6 +346,7 @@ stream = SubResource("AudioStreamRandomizer_kp1mu")
 
 [node name="Ambie" type="OmniLight3D" parent="."]
 light_energy = 0.3
+light_bake_mode = 0
 light_cull_mask = 4294967293
 shadow_enabled = true
 shadow_caster_mask = 4294967293

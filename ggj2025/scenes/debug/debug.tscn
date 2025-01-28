@@ -40,11 +40,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pa0g8")
 
 [node name="Bubble" parent="." instance=ExtResource("1_kfclf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.5, 14)
-mode = 0
-mult_dist = 40.0
-tap_intensity = 400.0
-intensity = Vector3(10, 10, 0.01)
-camera_sens_mult = 0.01
 
 [node name="Cave" parent="." instance=ExtResource("2_fym4n")]
 
